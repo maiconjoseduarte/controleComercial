@@ -257,4 +257,56 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+
+    public function actionCreatePermission()
+    {
+        $auth = Yii::$app->authManager;
+
+        $admin = $auth->createRole('administrador');
+        $analista = $auth->createRole('analista');
+        $assistente = $auth->createRole('assistente');
+
+        $auth->add($admin);
+        $auth->add($analista);
+        $auth->add($assistente);
+
+        $viewPost = $auth->createPermission('post-index');
+        $addPost = $auth->createPermission('post-create');
+        $editPost = $auth->createPermission('post-edit');
+        $deletePost = $auth->createPermission('post-delete');
+
+        $auth->add($viewPost);
+        $auth->add($addPost);
+        $auth->add($editPost);
+        $auth->add($deletePost);
+
+        $auth->addChild($admin, $viewPost);
+        $auth->addChild($admin, $addPost);
+        $auth->addChild($admin, $editPost);
+        $auth->addChild($admin, $deletePost);
+
+        $auth->addChild($analista, $viewPost);
+        $auth->addChild($analista, $addPost);
+        $auth->addChild($analista, $editPost);
+
+        $auth->addChild($assistente, $viewPost);
+
+        $auth->assign($admin, 1);
+//        $auth->assign($supervisor, 2);
+//        $auth->assign($operador, 3);
+    }
+
+    public function actionTestPermission($userId)
+    {
+        $auth = Yii::$app->authManager;
+
+        $ta = Yii::$app->user->can('post-index');
+
+        echo "<p>View: {$auth->checkAccess($userId, 'post-index')}</p>";
+        echo "<p>Create: {$auth->checkAccess($userId, 'post-create')}</p>";
+        echo "<p>Edit: {$auth->checkAccess($userId, 'post-edit')}</p>";
+        echo "<p>Delete: {$auth->checkAccess($userId, 'post-delete')}</p>";
+
+    }
 }
