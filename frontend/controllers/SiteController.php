@@ -28,15 +28,20 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'index', 'about'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['?', '@'],
                     ],
                     [
                         'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index', 'about'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -45,7 +50,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => YII_DEBUG ? ['get', 'post'] : ['post'],
                 ],
             ],
         ];
@@ -84,13 +89,15 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'login';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['site/login']);
         } else {
             $model->password = '';
 
@@ -152,6 +159,8 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        $this->layout = 'login';
+
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');

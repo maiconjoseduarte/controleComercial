@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
 <div class="app-header header-shadow">
     <div class="app-header__logo">
         <div class="logo-src"></div>
@@ -75,6 +80,11 @@
                                     <button type="button" tabindex="0" class="dropdown-item">Actions</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                                    <?= Html::beginForm(['/site/logout'], 'post')
+                                    . Html::submitButton('Sign out',
+                                        ['class' => 'btn btn-default btn-flat']
+                                    )
+                                    . Html::endForm()?>
                                 </div>
                             </div>
                         </div>
