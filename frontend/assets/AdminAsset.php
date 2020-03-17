@@ -12,7 +12,7 @@ class AdminAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-//        'css/site.css',
+        'css/site.css',
         'admin/main.css'
     ];
     public $js = [
