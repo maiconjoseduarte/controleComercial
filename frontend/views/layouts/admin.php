@@ -40,7 +40,7 @@ AdminAsset::register($this);
                                         <span class="d-inline-block pr-2 font-size-xlg">
                                             <i class="pe-7s-angle-right-circle opacity-6"></i>
                                         </span>
-                                    <span class="d-inline-block">Minimal Dashboard</span>
+                                    <span class="d-inline-block"><?= $this->title; ?></span>
                                 </div>
                                 <div class="page-title-subheading opacity-10">
                                     <?= Breadcrumbs::widget([

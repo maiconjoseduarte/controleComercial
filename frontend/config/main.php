@@ -12,6 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'layout' => 'admin',
+    'language' => 'pt-br',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
