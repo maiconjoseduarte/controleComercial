@@ -45,15 +45,21 @@ use yii\helpers\Url;
                 </li>
                 <li class="app-sidebar__heading">Sistema</li>
                 <li>
-                    <a href="<?= Url::to(['site/about']) ?>">
+                    <a href="<?= Url::to(['/site/about']) ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>About
                     </a>
                 </li>
                 <li>
-                    <a href="<?= Url::to(['site/contact']) ?>">
+                    <a href="<?= Url::to(['/site/contact']) ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Client
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= Url::to(['/app/colaborador/index']) ?>">
+                        <i class="metismenu-icon pe-7s-mouse">
+                        </i>Colaboradores
                     </a>
                 </li>
 
