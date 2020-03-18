@@ -5,7 +5,7 @@
 
 use frontend\assets\AdminAsset;
 use yii\helpers\Html;
-use yii\bootstrap4\Breadcrumbs;
+use common\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 AdminAsset::register($this);

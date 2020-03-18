@@ -40,7 +40,7 @@ use yii\helpers\Url;
                 <li>
                     <a href="<?= Url::to(['site/index']) ?>" class="mm-active">
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard Example 1
+                        Dashboard
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Sistema</li>
