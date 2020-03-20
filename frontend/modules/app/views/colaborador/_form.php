@@ -8,18 +8,20 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="colaborador-form">
-
+<div class="card-body">
     <?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'cargo')->dropDownList(\common\models\Colaborador::$OPCOES_CARGO, ['prompt' => '']) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cargo')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="form-group ">
+        <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>

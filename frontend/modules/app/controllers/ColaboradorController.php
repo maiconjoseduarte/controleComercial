@@ -2,6 +2,8 @@
 
 namespace app\modules\app\controllers;
 
+use common\components\AuthController;
+use common\exceptions\FeedbackException;
 use Yii;
 use common\models\Colaborador;
 use frontend\modules\app\models\ColaboradorSearch;
@@ -12,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * ColaboradorController implements the CRUD actions for Colaborador model.
  */
-class ColaboradorController extends Controller
+class ColaboradorController extends AuthController
 {
     /**
      * {@inheritdoc}
@@ -66,8 +68,26 @@ class ColaboradorController extends Controller
     {
         $model = new Colaborador();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+
+                if ($model->save() === false) {
+                    throw new FeedbackException("Ocorreu um erro ao salvar registro.");
+                }
+
+                $transaction->commit();
+                Yii::$app->session->addFlash('success', 'Colaborador cadastrado com sucesso.');
+
+                return $this->redirect(['index']);
+            } catch (FeedbackException $e) {
+                Yii::$app->session->addFlash('error', $e->getMessage());
+                $transaction->rollBack();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                Yii::error($e->getMessage());
+                Yii::$app->session->addFlash('error', 'Ocorreu um erro imprevisto.');
+            }
         }
 
         return $this->render('create', [
@@ -86,8 +106,26 @@ class ColaboradorController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+
+                if ($model->save() === false) {
+                    throw new FeedbackException("Ocorreu um erro ao editar registro.");
+                }
+
+                $transaction->commit();
+                Yii::$app->session->addFlash('success', 'Colaborador editado com sucesso.');
+
+                return $this->redirect(['index']);
+            } catch (FeedbackException $e) {
+                Yii::$app->session->addFlash('error', $e->getMessage());
+                $transaction->rollBack();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                Yii::error($e->getMessage());
+                Yii::$app->session->addFlash('error', 'Ocorreu um erro imprevisto.');
+            }
         }
 
         return $this->render('update', [
@@ -104,9 +142,29 @@ class ColaboradorController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        if (Yii::$app->request->isPost) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+
+                if ($model->delete() === false) {
+                    throw new FeedbackException("Ocorreu um erro ao excluir o registro.");
+                }
+
+                $transaction->commit();
+                Yii::$app->session->addFlash('success', 'Colaborador excluido com sucesso.');
+
+                return $this->redirect(['index']);
+            } catch (FeedbackException $e) {
+                Yii::$app->session->addFlash('error', $e->getMessage());
+                $transaction->rollBack();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                Yii::error($e->getMessage());
+                Yii::$app->session->addFlash('error', 'Ocorreu um erro imprevisto.');
+            }
+        }
     }
 
     /**

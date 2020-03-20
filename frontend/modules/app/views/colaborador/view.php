@@ -6,33 +6,34 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Colaborador */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Colaboradors', 'url' => ['index']];
+$this->title = $model->nome;
+$this->params['breadcrumbs'][] = ['label' => 'Colaboradores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="colaborador-view">
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="mb-3 card">
+            <div class="card-header-tab card-header-tab-animation card-header">
+                <div class="card-header-title">
+                    <?= $this->title; ?>
+                </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nome',
-            'cargo',
-        ],
-    ]) ?>
-
+                <ul class="nav">
+                    <li class="nav-item">
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'id',
+                        'nome',
+                        'cargo',
+                    ],
+                ]) ?>
+            </div>
+        </div>
+    </div>
 </div>
