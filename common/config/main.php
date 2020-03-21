@@ -1,11 +1,18 @@
 <?php
 return [
+    'name' => 'controle Comercial',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'session' => [
+            'class' => 'yii\web\Session',
+            'cookieParams' => ['lifetime' => 1*3600],
+            'timeout' => 8*3600,
+            'GCProbability' => 1,
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

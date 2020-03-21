@@ -1,12 +1,12 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
+/* @var $form yii\bootstrap4\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
 use common\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Login';
