@@ -24,17 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <ul class="nav">
                     <li class="nav-item">
-                        <?= Html::a('<i class="'. Icones::ADD .'"></i> '. Layout::BTN_ADD_LABEL, ['create'], ['class' => 'btn btn-success']) ?>
+                        <?= Html::a('<i class="'. Icones::ADD .'"></i> '. Layout::BTN_ADD_LABEL, ['create'], ['class' => Layout::BTN_ACTION]) ?>
                     </li>
                 </ul>
             </div>
             <div class="card-body">
-                <br><br><br><br>
-                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
-                    'layout' => "{items}\n{pager}",
+                    'panel' => [
+                        'type' => GridView::TYPE_DEFAULT,
+                        'heading' => false
+                    ],
+                    'toolbar' => [
+                        '<div class="pull-right">{export}</div>',
+                    ],
                     'columns' => [
                         [
                             'class' => '\kartik\grid\ActionColumn',
@@ -78,7 +83,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }
                             },
                         ],
-
                         'id',
                         'nome',
                         [
@@ -87,13 +91,48 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return Colaborador::$OPCOES_CARGO[$model->cargo] ?? null;
                             }
                         ]
-
                     ],
+                    'export' => [
+                        'header' => html_entity_decode('<li role="presentation" class="dropdown-header">Opções:</li>'),
+                        'label' => 'Download',
+                        'showConfirmAlert' => false,
+                        'fontAwesome' => false,
+                        'target' => GridView::TARGET_BLANK,
+                        'options' => ['title' => 'Download', 'class' => Layout::BTN_EXPORT],
+                        'icon' => Icones::EXPORT,
+                    ],
+                    'exportContainer' => ['class' => 'hidden-xs hidden-sm'],
                     'pjax' => Layout::GRID_PAJAX,
                     'bordered' => Layout::GRID_BORDERED,
                     'hover' => Layout::GRID_HOVER,
                     'striped' => Layout::GRID_STRIPED,
                     'condensed' => Layout::GRID_CONDENSED,
+                    'exportConfig' => [
+                        GridView::PDF => [
+                            'filename' => $this->title,
+                            'config' => [
+                                'mode' => 'utf-8',
+                                'format' => 'A4',
+                                'destination' => 'I',
+                                'orientation' => \kartik\mpdf\Pdf::ORIENT_PORTRAIT,
+                                'defaultFontSize' => 12,
+                                'marginBottom' => 20,
+                                'marginLeft' => 10,
+                                'marginRight' => 10,
+                                'cssInline' => '.kv-grid-table, .kv-page-summary{font-size: 10px;}',
+                                'methods' => [
+                                    'SetHTMLHeader' => '',
+                                    'SetFooter' => '{PAGENO}'
+                                ],
+                                'options' => [
+                                    'setAutoTopMargin' => 'stretch',
+                                    'title' => $this->title
+                                ],
+                            ]
+                        ],
+                        GridView::EXCEL => ['filename' => $this->title],
+                        GridView::HTML => ['filename' => $this->title],
+                    ],
                 ]); ?>
             </div>
         </div>

@@ -1,5 +1,8 @@
 <?php
 
+use common\components\Layout;
+use common\models\Colaborador;
+use frontend\modules\app\models\ColaboradorSearch;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -9,23 +12,27 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="colaborador-search">
-
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'nome') ?>
-
-    <?= $form->field($model, 'cargo') ?>
+    <div class="row">
+        <div class="col-md-3">
+            <?= $form->field($model, 'nome') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'cargo')->dropDownList(Colaborador::$OPCOES_CARGO, ['prompt' => '']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'pageSize')->dropDownList(ColaboradorSearch::$OPCOES_PAGINACAO) ?>
+        </div>
+    </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Filtrar', ['class' => Layout::BTN_FILTER]) ?>
+        <?= Html::resetButton('Limpar', ['class' => Layout::BTN_LIMPAR]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>

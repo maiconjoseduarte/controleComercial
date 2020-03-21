@@ -11,6 +11,10 @@ use common\models\Colaborador;
  */
 class ColaboradorSearch extends Colaborador
 {
+    public $pageSize = 50;
+
+    public static $OPCOES_PAGINACAO = [50 => '50 resultados', 100 => '100 resultados', 200 => '200 resultados'];
+
     /**
      * {@inheritdoc}
      */
@@ -19,16 +23,15 @@ class ColaboradorSearch extends Colaborador
         return [
             [['id', 'cargo'], 'integer'],
             [['nome'], 'safe'],
+            [['pageSize'], 'in', 'range' => array_keys(self::$OPCOES_PAGINACAO)],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
+    public function attributeLabels()
     {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
+        $result = parent::attributeLabels();
+        $result['pageSize'] = 'Paginação';
+        return $result;
     }
 
     /**
@@ -44,12 +47,12 @@ class ColaboradorSearch extends Colaborador
 
         // add conditions that should always apply here
 
+        $this->load($params);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-//            'pagination' => ['pageSize' => 2]
+            'pagination' => ['pageSize' => $this->pageSize]
         ]);
-
-        $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

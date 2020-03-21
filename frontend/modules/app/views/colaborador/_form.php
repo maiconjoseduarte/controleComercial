@@ -1,5 +1,6 @@
 <?php
 
+use common\components\Layout;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -20,7 +21,8 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group ">
-        <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
+        <?= Html::a(Layout::BTN_VOLTAR_LABEL, \yii\helpers\Url::to(['index']), ['class' => Layout::BTN_DEFAULT]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

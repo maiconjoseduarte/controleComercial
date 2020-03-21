@@ -126,3 +126,10 @@ a.desc:after {
 .span-actions-columns {
     font-size: 14px;
 }
+.card-footer {
+    border-top: 0px;
+}
+.kv-panel-before {
+    border-bottom: 0px;
+}
+
