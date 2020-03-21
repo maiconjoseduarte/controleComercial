@@ -54,4 +54,9 @@ return [
         ],
     ],
     'params' => $params,
+
+    /* Sistema em manutenção; Definir a rota
+    'catchAll' => [
+        'site/about',
+    ], */
 ];

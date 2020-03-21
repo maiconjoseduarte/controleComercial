@@ -2,6 +2,12 @@
 
 use yii\helpers\Html;
 
+$logo = Yii::$app->user->identity->username;
+$nome = Yii::$app->user->identity->username;
+
+if ($nome != 'Maicon' && $nome != 'Monica') {
+    $logo = 'avatar';
+}
 ?>
 <div class="app-header header-shadow">
     <div class="app-header__logo">
@@ -70,7 +76,7 @@ use yii\helpers\Html;
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="admin/assets/images/avatars/1.jpg" alt="">
+                                    <img width="42" class="rounded-circle" src="images/user/<?= $logo ?>.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -90,10 +96,10 @@ use yii\helpers\Html;
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                Alina Mclourd
+                                <?= $nome ?>
                             </div>
                             <div class="widget-subheading">
-                                VP People Manager
+                                administrador
                             </div>
                         </div>
                         <div class="widget-content-right header-user-info ml-3">
