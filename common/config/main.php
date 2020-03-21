@@ -9,8 +9,8 @@ return [
     'components' => [
         'session' => [
             'class' => 'yii\web\Session',
-            'cookieParams' => ['lifetime' => 1*3600],
-            'timeout' => 8*3600,
+            'cookieParams' => ['lifetime' => 1800],
+            'timeout' => 1800,
             'GCProbability' => 1,
         ],
         'cache' => [
