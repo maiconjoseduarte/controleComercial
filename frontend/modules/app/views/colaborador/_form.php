@@ -2,6 +2,7 @@
 
 use common\components\Layout;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -22,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group ">
         <?= Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
-        <?= Html::a(Layout::BTN_VOLTAR_LABEL, \yii\helpers\Url::to(['index']), ['class' => Layout::BTN_DEFAULT]) ?>
+        <?= Html::a(Layout::BTN_VOLTAR_LABEL, Url::to(['index']), ['class' => Layout::BTN_DEFAULT]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

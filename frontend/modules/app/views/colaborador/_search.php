@@ -30,8 +30,8 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Filtrar', ['class' => Layout::BTN_FILTER]) ?>
-        <?= Html::resetButton('Limpar', ['class' => Layout::BTN_LIMPAR]) ?>
+        <?= Html::submitButton(Layout::BTN_FILTER_LABEL, ['class' => Layout::BTN_FILTER]) ?>
+        <?= Html::resetButton(Layout::BTN_LIMPAR_LABEL, ['class' => Layout::BTN_LIMPAR]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

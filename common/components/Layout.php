@@ -9,12 +9,18 @@ namespace common\components;
 class Layout
 {
 
-    const BTN_ACTION = 'btn btn-success ';
     const BTN_ADD_LABEL = 'Novo';
-
-    const BTN_DEFAULT = 'btn btn-light';
-    const BTN_SUBMIT = 'btn btn-info';
     const BTN_SUBMIT_LABEL = 'Salvar';
+    const BTN_FILTER_LABEL = 'Filtrar';
+    const BTN_LIMPAR_LABEL = 'Limpar';
+    const BTN_VOLTAR_LABEL = 'Ir para Listagem';
+
+    const BTN_ACTION = 'btn btn-success ';
+    const BTN_NOVO = 'btn btn-success ';
+    const BTN_DEFAULT = 'btn btn-outline-secondary';
+    const BTN_SUBMIT = 'btn btn-primary';
+    const BTN_FILTER = 'btn btn-info';
+    const BTN_LIMPAR = 'btn btn-outline-secondary';
 
 
     const BADGE_PRIMARY = 'badge badge-primary span-actions-columns';
@@ -32,7 +38,6 @@ class Layout
     const GRID_RESPONSIVE_WRAP = false;
 
     const BTN_VOLTAR = 'btn btn-muted  ';
-    const BTN_VOLTAR_LABEL = 'Ir para Listagem';
 
     const BTN_DELETE = 'btn btn-danger ';
     const BTN_DELETE_LABEL = 'Excluir';
@@ -43,8 +48,6 @@ class Layout
     const BTN_PRIMARY = 'btn btn-primary ';
     const BTN_EXPORT = 'btn btn-outline-dark ';
     const BTN_SHOW_FORM = 'btn btn-outline-dark  ';
-    const BTN_FILTER = 'btn btn-primary btn-apc-filter ';
     const BTN_VOLTAR_TOPO = 'btn btn-default ';
-    const BTN_LIMPAR = 'btn btn-outline-secondary';
 
 }

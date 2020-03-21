@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <ul class="nav">
                     <li class="nav-item">
-                        <?= Html::a('<i class="'. Icones::ADD .'"></i> '. Layout::BTN_ADD_LABEL, ['create'], ['class' => Layout::BTN_ACTION]) ?>
+                        <?= Html::a('<i class="'. Icones::ADD .'"></i> '. Layout::BTN_ADD_LABEL, ['create'], ['class' => Layout::BTN_NOVO]) ?>
                     </li>
                 </ul>
             </div>
