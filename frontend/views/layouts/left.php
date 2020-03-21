@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 
+$link = $_GET['r'] ?? null;
 ?>
 <div class="app-sidebar sidebar-shadow">
     <div class="app-header__logo">
@@ -34,36 +35,36 @@ use yii\helpers\Url;
             </button>
         </span>
     </div>    <div class="scrollbar-sidebar">
-        <div class="app-sidebar__inner">
-            <ul class="vertical-nav-menu">
+        <div id="menu-lateral" class="app-sidebar__inner">
+            <ul  class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="<?= Url::to(['/site/index']) ?>" class="mm-active">
+                    <a href="<?= Url::to(['/site/index']) ?>" class="<?= (strstr($link,'site/index') || $link == null) ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Sistema</li>
                 <li>
-                    <a href="<?= Url::to(['/site/about']) ?>">
+                    <a href="<?= Url::to(['/site/about']) ?>" class="<?= $link == 'site/about' ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>About
                     </a>
                 </li>
                 <li>
-                    <a href="<?= Url::to(['/site/contact']) ?>">
+                    <a href="<?= Url::to(['/site/contact']) ?>" class="<?= strstr($link,'site/contact') ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Client
                     </a>
                 </li>
                 <li>
-                    <a href="<?= Url::to(['/app/colaborador/index']) ?>">
+                    <a href="<?= Url::to(['/app/colaborador/index']) ?>" class="<?= strstr($link,'app/colaborador') ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Colaboradores
                     </a>
                 </li>
                 <li>
-                    <a href="<?= Url::to(['/app/grupo/index']) ?>">
+                    <a href="<?= Url::to(['/app/grupo/index']) ?>" class="<?= strstr($link,'app/grupo') ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Grupo
                     </a>

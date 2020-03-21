@@ -5,7 +5,7 @@ use common\models\Colaborador;
 use frontend\modules\app\models\GrupoSearch;
 use kartik\select2\Select2;
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\app\models\GrupoSearch */

@@ -20,9 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="slick-slider">
                         <div>
                             <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark" tabindex="-1">
-                                <div class="slide-img-bg" style="background-image: url('login/images/citynights.jpg');"></div>
-                                <div class="slider-content"><h3>Scalable, Modular, Consistent</h3>
-                                    <p>Easily exclude the components you don't require. Lightweight, consistent Bootstrap based styles across all elements and components</p></div>
+                                <div class="slide-img-bg" style="background-image: url('images/fundo_.jpg');"></div>
+                                <div class="slider-content">
+                                    <img src="images/mafra-logo-branca.png" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -33,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Alert::widget(); ?>
                     <div class="app-logo"></div>
                     <h4 class="mb-0">
-                        <span class="d-block">Welcome back,</span>
-                        <span>Please sign in to your account.</span></h4>
-                    <h6 class="mt-3">No account? <a href="<?= Url::to(['site/signup']) ?>" class="text-primary">Sign up now</a></h6>
+                        <img src="images/mafra-logo-color.png" alt="">
+                    </h4>
+<!--                    <h6 class="mt-3">No account? <a href="--><?//= Url::to(['site/signup']) ?><!--" class="text-primary">Sign up now</a></h6>-->
                     <div class="divider row"></div>
                     <div>
                         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
@@ -50,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="divider row"></div>
                         <div class="d-flex align-items-center">
                             <div class="ml-auto">
-                                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                                <?= Html::submitButton('Entrar', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style' => 'width: 200px;']) ?>
                             </div>
                         </div>
                         <?php ActiveForm::end(); ?>
