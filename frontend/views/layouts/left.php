@@ -62,6 +62,12 @@ use yii\helpers\Url;
                         </i>Colaboradores
                     </a>
                 </li>
+                <li>
+                    <a href="<?= Url::to(['/app/grupo/index']) ?>">
+                        <i class="metismenu-icon pe-7s-mouse">
+                        </i>Grupo
+                    </a>
+                </li>
 
                 <li class="app-sidebar__heading">UI Components</li>
                 <li>

@@ -54,4 +54,26 @@ class Colaborador extends \yii\db\ActiveRecord
             'cargo' => 'Cargo',
         ];
     }
+
+    static public function select2Data($cargo = false)
+    {
+        $results = [];
+
+        $colaboradores = self::find();
+
+        if ($cargo) {
+            $colaboradores = $colaboradores->andWhere(['cargo' => $cargo])->orderBy(['nome' => SORT_ASC]);
+        }
+
+        $colaboradores = $colaboradores->all();
+
+        /** @var Colaborador[] $colaboradores */
+        if ($colaboradores != null) {
+            foreach ($colaboradores as $colaborador) {
+                $results[$colaborador->id] = "{$colaborador->nome}";
+            }
+        }
+
+        return $results;
+    }
 }
