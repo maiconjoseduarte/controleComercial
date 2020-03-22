@@ -310,6 +310,11 @@ class SiteController extends Controller
     {
         $auth = Yii::$app->authManager;
 
+        $auth->removeAllRoles();
+        $auth->removeAllPermissions();
+        $auth->removeAllAssignments();
+        $auth->removeAllRules();
+
         $admin = $auth->createRole('administrador');
         $analista = $auth->createRole('analista');
         $assistente = $auth->createRole('assistente');
@@ -415,6 +420,39 @@ class SiteController extends Controller
         $auth->addChild($assistente, $filialView);
         /*
          * FIM Filiais
+         */
+
+        /*
+         * COntratos
+         */
+        $contratoIndex = $auth->createPermission('app/contrato/index');
+        $contratoView = $auth->createPermission('app/contrato/view');
+        $contratoCreate = $auth->createPermission('app/contrato/create');
+        $contratoUpdate = $auth->createPermission('app/contrato/update');
+        $contratoDelete = $auth->createPermission('app/contrato/delete');
+
+        $auth->add($contratoIndex);
+        $auth->add($contratoView);
+        $auth->add($contratoCreate);
+        $auth->add($contratoUpdate);
+        $auth->add($contratoDelete);
+
+        $auth->addChild($admin, $contratoIndex);
+        $auth->addChild($admin, $contratoView);
+        $auth->addChild($admin, $contratoCreate);
+        $auth->addChild($admin, $contratoUpdate);
+        $auth->addChild($admin, $contratoDelete);
+
+        $auth->addChild($analista, $contratoIndex);
+        $auth->addChild($analista, $contratoView);
+        $auth->addChild($analista, $contratoCreate);
+        $auth->addChild($analista, $contratoUpdate);
+        $auth->addChild($analista, $contratoDelete);
+
+        $auth->addChild($assistente, $contratoIndex);
+        $auth->addChild($assistente, $contratoView);
+        /*
+         * FIM Contratos
          */
 
         $auth->assign($admin, 1);

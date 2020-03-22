@@ -85,6 +85,15 @@ $link = $_GET['r'] ?? null;
                 </li>
                 <?php  endif; ?>
 
+                <?php if (Yii::$app->user->can('app/contrato/index')) : ?>
+                <li>
+                    <a href="<?= Url::to(['/app/contrato/index']) ?>" class="<?= strstr($link,'app/contrato') ? 'mm-active' : ''; ?>">
+                        <i class="metismenu-icon pe-7s-mouse">
+                        </i>Contratos
+                    </a>
+                </li>
+                <?php  endif; ?>
+
                 <!--                <li class="app-sidebar__heading">UI Components</li>-->
 <!--                <li>-->
 <!--                    <a href="#">-->
