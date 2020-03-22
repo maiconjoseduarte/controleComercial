@@ -57,27 +57,35 @@ $link = $_GET['r'] ?? null;
                         </i>Client
                     </a>
                 </li>
-                <li>
-                    <a href="<?= Url::to(['/app/colaborador/index']) ?>" class="<?= strstr($link,'app/colaborador') ? 'mm-active' : ''; ?>">
-                        <i class="metismenu-icon pe-7s-mouse">
-                        </i>Colaboradores
-                    </a>
-                </li>
+
+                <?php if (Yii::$app->user->can('app/colaborador/index')) : ?>
+                    <li>
+                        <a href="<?= Url::to(['/app/colaborador/index']) ?>" class="<?= strstr($link,'app/colaborador') ? 'mm-active' : ''; ?>">
+                            <i class="metismenu-icon pe-7s-mouse">
+                            </i>Colaboradores
+                        </a>
+                    </li>
+                <?php  endif; ?>
+
+                <?php if (Yii::$app->user->can('app/grupo/index')) : ?>
                 <li>
                     <a href="<?= Url::to(['/app/grupo/index']) ?>" class="<?= strstr($link,'app/grupo') ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Grupo
                     </a>
                 </li>
+                <?php  endif; ?>
 
+                <?php if (Yii::$app->user->can('app/filial/index')) : ?>
                 <li>
                     <a href="<?= Url::to(['/app/filial/index']) ?>" class="<?= strstr($link,'app/filial') ? 'mm-active' : ''; ?>">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Filial
                     </a>
                 </li>
+                <?php  endif; ?>
 
-<!--                <li class="app-sidebar__heading">UI Components</li>-->
+                <!--                <li class="app-sidebar__heading">UI Components</li>-->
 <!--                <li>-->
 <!--                    <a href="#">-->
 <!--                        <i class="metismenu-icon pe-7s-diamond"></i>-->
