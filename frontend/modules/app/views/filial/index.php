@@ -12,6 +12,10 @@ use yii\helpers\Url;
 
 $this->title = 'Filial';
 $this->params['breadcrumbs'][] = $this->title;
+
+$canCreate = Yii::$app->user->can('app/colaborador/create');
+$canUpdate = Yii::$app->user->can('app/colaborador/update');
+$canDelete = Yii::$app->user->can('app/colaborador/delete');
 ?>
 <div class="row">
     <div class="col-md-12 col-lg-12">
@@ -23,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <ul class="nav">
                     <li class="nav-item">
-                        <?= Html::a('<i class="'. Icones::ADD .'"></i> '. Layout::BTN_ADD_LABEL, ['create'], ['class' => Layout::BTN_NOVO]) ?>
+                        <?= ($canCreate) ? Html::a('<i class="'. Icones::ADD .'"></i> '. Layout::BTN_ADD_LABEL, ['create'], ['class' => Layout::BTN_NOVO]) : '' ?>
                     </li>
                 </ul>
             </div>
@@ -53,16 +57,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 return $html;
                             },
-                            'update' => function ($url) {
-
+                            'update' => function ($url) use ($canUpdate) {
+                                if ($canUpdate === false) {
+                                    return '';
+                                }
                                 $icon = Html::tag('i', null, ['class' => Icones::EDIT]);
                                 $span = Html::tag('span', $icon, ['class' => Layout::BADGE_WARNING]);
                                 $html = Html::a($span, $url);
 
                                 return $html;
                             },
-                            'delete' => function ($url) {
-
+                            'delete' => function ($url) use ($canDelete) {
+                                if ($canDelete === false) {
+                                    return '';
+                                }
                                 $icon = Html::tag('i', null, ['class' => Icones::DELETE]);
                                 $span = Html::tag('span', $icon, ['class' => Layout::BADGE_DANGER]);
                                 $html = Html::a($span, $url, [

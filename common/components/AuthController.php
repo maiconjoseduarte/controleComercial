@@ -4,6 +4,7 @@ namespace common\components;
 
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Class AuthController
@@ -22,6 +23,11 @@ class AuthController extends Controller {
                 [
                     'allow' => true,
                     'roles' => ['@'],
+                    'matchCallback' => function () {
+                        if (! \Yii::$app->user->can(\Yii::$app->controller->route))
+                            throw new ForbiddenHttpException('Você não está autorizado a realizar essa ação. ');
+                        return true;
+                    }
                 ],
             ],
         ]);

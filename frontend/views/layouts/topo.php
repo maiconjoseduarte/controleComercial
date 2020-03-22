@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 
+$auth = Yii::$app->authManager;
+$grupo = $auth->getAssignments(Yii::$app->user->identity->id);
+
+$nomeGrupo = array_keys($grupo)[0] ?? '';
+
 $logo = Yii::$app->user->identity->username;
 $nome = Yii::$app->user->identity->username;
 
@@ -99,7 +104,7 @@ if ($nome != 'Maicon' && $nome != 'Monica') {
                                 <?= $nome ?>
                             </div>
                             <div class="widget-subheading">
-                                administrador
+                                <?= $nomeGrupo ?>
                             </div>
                         </div>
                         <div class="widget-content-right header-user-info ml-3">

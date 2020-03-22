@@ -306,6 +306,124 @@ class SiteController extends Controller
 //        $auth->assign($operador, 3);
     }
 
+    public function actionAddPermission()
+    {
+        $auth = Yii::$app->authManager;
+
+        $admin = $auth->createRole('administrador');
+        $analista = $auth->createRole('analista');
+        $assistente = $auth->createRole('assistente');
+
+        $auth->add($admin);
+        $auth->add($analista);
+        $auth->add($assistente);
+
+        /*
+         * COlaborador
+         */
+        $colaboradorIndex = $auth->createPermission('app/colaborador/index');
+        $colaboradorView = $auth->createPermission('app/colaborador/view');
+        $colaboradorCreate = $auth->createPermission('app/colaborador/create');
+        $colaboradorUpdate = $auth->createPermission('app/colaborador/update');
+        $colaboradorDelete = $auth->createPermission('app/colaborador/delete');
+
+        $auth->add($colaboradorIndex);
+        $auth->add($colaboradorView);
+        $auth->add($colaboradorCreate);
+        $auth->add($colaboradorUpdate);
+        $auth->add($colaboradorDelete);
+
+        $auth->addChild($admin, $colaboradorIndex);
+        $auth->addChild($admin, $colaboradorView);
+        $auth->addChild($admin, $colaboradorCreate);
+        $auth->addChild($admin, $colaboradorUpdate);
+        $auth->addChild($admin, $colaboradorDelete);
+
+        $auth->addChild($analista, $colaboradorIndex);
+        $auth->addChild($analista, $colaboradorView);
+        $auth->addChild($analista, $colaboradorCreate);
+        $auth->addChild($analista, $colaboradorUpdate);
+        $auth->addChild($analista, $colaboradorDelete);
+
+        $auth->addChild($assistente, $colaboradorIndex);
+        $auth->addChild($assistente, $colaboradorView);
+        /*
+         * FIM colaborador
+         */
+
+        /*
+         * Grupo
+         */
+        $grupoIndex = $auth->createPermission('app/grupo/index');
+        $grupoView = $auth->createPermission('app/grupo/view');
+        $grupoCreate = $auth->createPermission('app/grupo/create');
+        $grupoUpdate = $auth->createPermission('app/grupo/update');
+        $grupoDelete = $auth->createPermission('app/grupo/delete');
+
+        $auth->add($grupoIndex);
+        $auth->add($grupoView);
+        $auth->add($grupoCreate);
+        $auth->add($grupoUpdate);
+        $auth->add($grupoDelete);
+
+        $auth->addChild($admin, $grupoIndex);
+        $auth->addChild($admin, $grupoView);
+        $auth->addChild($admin, $grupoCreate);
+        $auth->addChild($admin, $grupoUpdate);
+        $auth->addChild($admin, $grupoDelete);
+
+        $auth->addChild($analista, $grupoIndex);
+        $auth->addChild($analista, $grupoView);
+        $auth->addChild($analista, $grupoCreate);
+        $auth->addChild($analista, $grupoUpdate);
+        $auth->addChild($analista, $grupoDelete);
+
+        $auth->addChild($assistente, $grupoIndex);
+        $auth->addChild($assistente, $grupoView);
+        /*
+         * FIM Grupo
+         */
+
+        /*
+         * Filiais
+         */
+        $filialIndex = $auth->createPermission('app/filial/index');
+        $filialView = $auth->createPermission('app/filial/view');
+        $filialCreate = $auth->createPermission('app/filial/create');
+        $filialUpdate = $auth->createPermission('app/filial/update');
+        $filialDelete = $auth->createPermission('app/filial/delete');
+
+        $auth->add($filialIndex);
+        $auth->add($filialView);
+        $auth->add($filialCreate);
+        $auth->add($filialUpdate);
+        $auth->add($filialDelete);
+
+        $auth->addChild($admin, $filialIndex);
+        $auth->addChild($admin, $filialView);
+        $auth->addChild($admin, $filialCreate);
+        $auth->addChild($admin, $filialUpdate);
+        $auth->addChild($admin, $filialDelete);
+
+        $auth->addChild($analista, $filialIndex);
+        $auth->addChild($analista, $filialView);
+        $auth->addChild($analista, $filialCreate);
+        $auth->addChild($analista, $filialUpdate);
+        $auth->addChild($analista, $filialDelete);
+
+        $auth->addChild($assistente, $filialIndex);
+        $auth->addChild($assistente, $filialView);
+        /*
+         * FIM Filiais
+         */
+
+        $auth->assign($admin, 1);
+        $auth->assign($admin, 2);
+        $auth->assign($analista, 7);
+        $auth->assign($assistente, 6);
+    }
+
+
     public function actionTestPermission($userId)
     {
         $auth = Yii::$app->authManager;
