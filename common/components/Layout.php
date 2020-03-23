@@ -14,6 +14,7 @@ class Layout
     const BTN_FILTER_LABEL = 'Filtrar';
     const BTN_LIMPAR_LABEL = 'Limpar';
     const BTN_VOLTAR_LABEL = 'Ir para Listagem';
+    const BTN_PROCESSAR_LABEL = 'Processar';
 
     const BTN_ACTION = 'btn btn-success ';
     const BTN_NOVO = 'btn btn-success ';

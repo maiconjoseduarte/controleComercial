@@ -3,7 +3,6 @@
 namespace frontend\modules\app\models;
 
 use common\exceptions\FeedbackException;
-use common\models\Grupo;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\BaseReader;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -24,25 +23,12 @@ use yii\web\UploadedFile;
  */
 abstract class Importacao extends Model
 {
-    const TIPO_IMPORTACAO_CONDOMINIO = 1;
-    const TIPO_IMPORTACAO_UNIDADE = 2;
-    const TIPO_IMPORTACAO_MORADOR = 3;
-
-    const IMPORTACAO_TEXTO_FORMATACAO_ORIGINAL = 0;
-    const IMPORTACAO_TEXTO_FORMATACAO_PRIMEIRA_LETRA_MAIUSCULA = 1;
-
     const MASCARA_CNPJ = '%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s';
     const MASCARA_CPF = '%s%s%s.%s%s%s.%s%s%s-%s%s';
     const MASCARA_CEP = '%s%s%s%s%s-%s%s%s';
 
-    /** @var integer */
-    public $idGrupo;
-
     /** @var UploadedFile */
     public $arquivo;
-
-    /** @var string */
-    public $formatacaoTexto;
 
     /**
      * Continuar se algum erro acontecer no processamento de dados.
@@ -66,18 +52,9 @@ abstract class Importacao extends Model
     {
         return [
             [['arquivo'], 'required'],
-            [['idGrupo'], 'required',
-                'when' => function() {
-                    return $this instanceof ImportacaoFilial ||
-                       $this instanceof ImportacaoContrato ||
-                       $this instanceof ImportacaoJuridico;
-                }
-            ],
             [['continuarProcessamento'], 'default', 'value' => true],
             [['continuarProcessamento'], 'boolean', 'trueValue' => true, 'falseValue' => false],
             [['arquivo'], 'file', 'extensions' => ['xlsx', 'xlsm', 'xltx', 'xltm', 'xls', 'xlt', 'xlm', 'ods', 'ots'], 'maxSize' => 1024*1024*5, 'checkExtensionByMimeType' => false],
-            [['idGrupo'], 'exist', 'skipOnError' => true, 'targetClass' => Grupo::className(), 'targetAttribute' => ['idGrupo' => 'id']],
-            [['formatacaoTexto'], 'in', 'range' => [self::IMPORTACAO_TEXTO_FORMATACAO_ORIGINAL, self::IMPORTACAO_TEXTO_FORMATACAO_PRIMEIRA_LETRA_MAIUSCULA]]
         ];
     }
 
@@ -92,10 +69,8 @@ abstract class Importacao extends Model
     public function attributeLabels()
     {
         return [
-            'idGrupo' => 'Grupo',
             'arquivo' => 'Arquivo',
-            'tipoImportacao' => 'Tipo de importação',
-            'formatacaoTexto' => 'Formatação do texto'
+            'continuarProcessamento' => 'Não interromper importação com erros.',
         ];
     }
 
@@ -154,10 +129,6 @@ abstract class Importacao extends Model
     protected function getString(Worksheet $sheet, string $coordenada, $default = null)
     {
         $valor = trim($sheet->getCell($coordenada)->getValue());
-
-        if ($this->formatacaoTexto === self::IMPORTACAO_TEXTO_FORMATACAO_PRIMEIRA_LETRA_MAIUSCULA) {
-            $valor = ucfirst(strtolower($valor));
-        }
 
         return empty($valor) ? $default : $valor;
     }

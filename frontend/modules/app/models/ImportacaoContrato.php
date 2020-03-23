@@ -55,7 +55,7 @@ class ImportacaoContrato extends Importacao
 
                 $transaction->commit();
             } catch (\Exception $e) {
-                $mensagem = "Erro ao importar a filia.";
+                $mensagem = "Erro ao importar o contrato.";
                 if ($e instanceof FeedbackException) {
                     $mensagem = $e->getMessage();
                 }

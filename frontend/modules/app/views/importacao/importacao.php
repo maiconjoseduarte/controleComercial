@@ -1,12 +1,8 @@
 <?php
 
 use common\components\Layout;
-use common\models\Grupo;
 use frontend\modules\app\models\Importacao;
 use common\components\Icones;
-use frontend\modules\app\models\ImportacaoContrato;
-use frontend\modules\app\models\ImportacaoFilial;
-use frontend\modules\app\models\ImportacaoJuridico;
 use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\web\JsExpression;
@@ -35,34 +31,6 @@ $this->title = 'Importação '. $importacao->nome ?? null;
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'autocomplete' => 'off']]); ?>
 
         <div class="row">
-            <?php
-                if (
-                        $importacao instanceof ImportacaoFilial ||
-                        $importacao instanceof ImportacaoContrato ||
-                        $importacao instanceof ImportacaoJuridico
-                ):
-            ?>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <?= $form->field($importacao, 'idGrupo')->widget(\kartik\select2\Select2::className(), [
-                    'data' => Grupo::select2Data(),
-                    'options' => ['placeholder' => 'Selecione um grupo ...'],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ]) ?>
-            </div>
-            <?php
-                endif;
-            ?>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <?= $form->field($importacao, 'formatacaoTexto')->dropDownList([
-                    Importacao::IMPORTACAO_TEXTO_FORMATACAO_ORIGINAL => 'Original',
-                    Importacao::IMPORTACAO_TEXTO_FORMATACAO_PRIMEIRA_LETRA_MAIUSCULA => 'Primeira letra maiúscula'
-                ]); ?>
-            </div>
             <div class="sm-12 col-md-6 col-lg-6">
                 <?= $form->field($importacao, 'arquivo')->widget(FileInput::classname(), [
                     'pluginOptions' => [
@@ -80,16 +48,11 @@ $this->title = 'Importação '. $importacao->nome ?? null;
 
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6">
-                <?= $form->field($importacao, 'continuarProcessamento')->checkbox(['label' => 'Não interromper importação com erros.']); ?>
+                <?= $form->field($importacao, 'continuarProcessamento')->checkbox(); ?>
             </div>
-            <?php if (property_exists($importacao, 'somarSaldoInicial')): ?>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <?= $form->field($importacao, 'somarSaldoInicial')->checkbox(['label' => 'Somar valores no saldo inicial.']); ?>
-            </div>
-            <?php endif; ?>
         </div>
 
-        <?= Html::submitButton('Processar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Layout::BTN_PROCESSAR_LABEL, ['class' => Layout::BTN_ACTION]) ?>
 
         <?php ActiveForm::end(); ?>
             </div>
