@@ -32,7 +32,7 @@ $canDelete = Yii::$app->user->can('app/contrato/delete');
                 </ul>
             </div>
             <div class="card-body">
-                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
