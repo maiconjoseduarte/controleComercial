@@ -94,64 +94,50 @@ $link = $_GET['r'] ?? null;
                 </li>
                 <?php  endif; ?>
 
-                <!--                <li class="app-sidebar__heading">UI Components</li>-->
-<!--                <li>-->
-<!--                    <a href="#">-->
-<!--                        <i class="metismenu-icon pe-7s-diamond"></i>-->
-<!--                        Elements-->
-<!--                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>-->
-<!--                    </a>-->
-<!--                    <ul>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon"></i>-->
-<!--                                Buttons-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>Dropdowns-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>Icons-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>Badges-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>Cards-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>List Groups-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>Navigation Menus-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon">-->
-<!--                                </i>Utilities-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+                <li class="app-sidebar__heading">Importações</li>
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Importação
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <?php
+                    $show = '';
+                    if (strstr($link,'app/importacao/importacao-grupo') ||
+                        strstr($link,'app/importacao/importacao-contrato') ||
+                        strstr($link,'app/importacao/importacao-filial') ) {
+                        $show = ' mm-show';
+                    }
+                    ?>
+                    <ul class="<?= $show ?>">
+                        <?php if (Yii::$app->user->can('app/importacao/importacao-grupo')) : ?>
+                        <li>
+                            <a href="<?= Url::to(['/app/importacao/importacao-grupo']) ?>" class="<?= strstr($link,'app/importacao/importacao-grupo') ? 'mm-active' : ''; ?>">
+                                <i class="metismenu-icon"></i>
+                                Grupo
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if (Yii::$app->user->can('app/importacao/importacao-filial')) : ?>
+                        <li>
+                            <a href="<?= Url::to(['/app/importacao/importacao-filial']) ?>" class="<?= strstr($link,'app/importacao/importacao-filial') ? 'mm-active' : ''; ?>">
+                                <i class="metismenu-icon"></i>
+                                Filial
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if (Yii::$app->user->can('app/importacao/importacao-contrato')) : ?>
+                        <li>
+                            <a href="<?= Url::to(['/app/importacao/importacao-contrato']) ?>" class="<?= strstr($link,'app/importacao/importacao-contrato') ? 'mm-active' : ''; ?>">
+                                <i class="metismenu-icon"></i>
+                                Contrato
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
 <!--                <li>-->
 <!--                    <a href="#">-->
 <!--                        <i class="metismenu-icon pe-7s-car"></i>-->

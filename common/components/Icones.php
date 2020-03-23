@@ -13,5 +13,6 @@ class Icones
     const DELETE = 'fa fa-trash';
     const ADD = 'fa fa-plus';
     const EXPORT = 'fa fa-download';
+    const FILE = 'fa fa-file';
 
 }
