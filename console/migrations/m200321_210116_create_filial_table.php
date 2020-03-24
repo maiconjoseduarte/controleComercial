@@ -26,7 +26,7 @@ class m200321_210116_create_filial_table extends Migration
             'codResponsavel' => $this->integer(),
             'codSuporte' => $this->integer(),
             'especialidade' => $this->string(),
-            'icms' => $this->integer(),
+            'icms' => $this->double(),
             'cdFaturamento' => $this->string(5),
             'ledTime' => $this->integer(2),
             'create_at' => $this->dateTime(),

@@ -30,8 +30,8 @@ class m200322_222708_create_contrato_table extends Migration
             'minimo' => $this->double(),
             'numeroLeitos' => $this->integer(),
             'tabela' => $this->string(),
-            'icms' => $this->integer(),
-            'enquadramento' => $this->integer(),
+            'icms' => $this->double(),
+            'enquadramento' => $this->double(),
             'create_at' => $this->dateTime(),
             'update_at' => $this->dateTime(),
         ]);
