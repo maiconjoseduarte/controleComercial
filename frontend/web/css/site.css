@@ -125,6 +125,7 @@ a.desc:after {
 
 .span-actions-columns {
     font-size: 14px;
+    margin-left: 5px;
 }
 .card-footer {
     border-top: 0px;

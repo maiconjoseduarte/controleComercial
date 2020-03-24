@@ -4,9 +4,11 @@ namespace app\modules\app\controllers;
 
 use common\components\AuthController;
 use common\exceptions\FeedbackException;
+use common\models\Filial;
 use Yii;
 use common\models\Grupo;
 use frontend\modules\app\models\GrupoSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -53,8 +55,16 @@ class GrupoController extends AuthController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $filiais = new ActiveDataProvider([
+            'query' => Filial::find()->where(['idGrupo' => $model->id]),
+            'pagination' => false
+        ]);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'filiais' => $filiais
         ]);
     }
 

@@ -48,7 +48,7 @@ $canDelete = Yii::$app->user->can('app/contrato/delete');
                             'class' => '\kartik\grid\ActionColumn',
                             'template' => '{view} {update} {delete}',
                             'header' => '',
-                            'headerOptions' => ['style' => 'width: 20px;'],
+                            'headerOptions' => ['style' => 'min-width: 170px;'],
                             'buttons' => [
                                 'view' => function ($url) {
                                     $icon = Html::tag('i', null, ['class' => Icones::VIEW]);

@@ -22,6 +22,8 @@ class Layout
     const BTN_SUBMIT = 'btn btn-primary';
     const BTN_FILTER = 'btn btn-info';
     const BTN_LIMPAR = 'btn btn-outline-secondary';
+    const BTN_OPCOES_GRUPO = 'btn btn-outline-secondary btn-opcoes-grupo';
+
 
 
     const BADGE_PRIMARY = 'badge badge-primary span-actions-columns';
@@ -50,5 +52,16 @@ class Layout
     const BTN_EXPORT = 'btn btn-outline-dark ';
     const BTN_SHOW_FORM = 'btn btn-outline-dark  ';
     const BTN_VOLTAR_TOPO = 'btn btn-default ';
+
+    const GRID_LAYOUT = "\n{items}\n
+        <div class='row'>
+            <div class='col-md-8'>
+                {pager}
+            </div>
+            <div class='col-md-4' style='float: right; margin-top: 25px; text-align: right'>
+                {summary}
+            </div>
+        </div>
+    ";
 
 }

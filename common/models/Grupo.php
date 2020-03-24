@@ -19,6 +19,8 @@ use yii\db\Expression;
  *
  * @property Colaborador $gestor
  * @property Colaborador $suporte
+ * @property Contrato $contrato
+ * @property Filial $filiais
  */
 class Grupo extends \yii\db\ActiveRecord
 {
@@ -97,6 +99,22 @@ class Grupo extends \yii\db\ActiveRecord
     public function getGestor()
     {
         return $this->hasOne(Colaborador::className(), ['id' => 'idGestor']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getContrato()
+    {
+        return $this->hasMany(Contrato::className(), ['idGrupo' => 'id'])->one();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFiliais()
+    {
+        return $this->hasMany(Filial::className(), ['idGrupo' => 'id']);
     }
 
     /**

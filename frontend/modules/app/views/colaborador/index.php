@@ -48,7 +48,8 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                         [
                             'class' => '\kartik\grid\ActionColumn',
                             'template' => '{view} {update} {delete}',
-                            'headerOptions' => ['style' => 'width: 20px;'],
+                            'header' => '',
+                            'headerOptions' => ['style' => 'min-width: 170px;'],
                             'buttons' => [
                                 'view' => function ($url) {
                                     $icon = Html::tag('i', null, ['class' => Icones::VIEW]);
