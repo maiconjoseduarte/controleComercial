@@ -26,21 +26,31 @@ class ImportacaoFilial extends Importacao
             $transaction = Filial::getDb()->beginTransaction();
             try {
 
+                $codBPSC = $this->getNumber($sheet, "A{$row->getRowIndex()}");
+                $idGrupo = $this->getNumber($sheet, "B{$row->getRowIndex()}");
+                $nome = $this->getString($sheet, "C{$row->getRowIndex()}");
+                $codIsoWeb = $this->getNumber($sheet, "D{$row->getRowIndex()}");
+                $documento = $this->getString($sheet, "E{$row->getRowIndex()}");
+                $uf = $this->getString($sheet, "F{$row->getRowIndex()}");
+                $nomeCidade = $this->getString($sheet, "G{$row->getRowIndex()}");
+                $especialidade = $this->getString($sheet, "J{$row->getRowIndex()}");
+                $icms = $this->getFloat($sheet, "K{$row->getRowIndex()}");
+                $cdFaturamento = $this->getString($sheet, "L{$row->getRowIndex()}");
+                $ledTime = $this->getNumber($sheet, "M{$row->getRowIndex()}");
+
                 $filial = new Filial();
 
-                $filial->id = $this->getString($sheet, "A{$row->getRowIndex()}");
-                $filial->nome = $this->getString($sheet, "B{$row->getRowIndex()}");
-                $filial->idGrupo = $this->getString($sheet, "c{$row->getRowIndex()}");
-                $filial->codIsoWeb = $this->getString($sheet, "D{$row->getRowIndex()}");
-                $filial->documento = $this->getString($sheet, "E{$row->getRowIndex()}");
-                $filial->uf = $this->getString($sheet, "F{$row->getRowIndex()}");
-                $filial->nomeCidade = $this->getString($sheet, "G{$row->getRowIndex()}");
-                $filial->especialidade = $this->getString($sheet, "H{$row->getRowIndex()}");
-                $filial->codResponsavel = $this->getString($sheet, "I{$row->getRowIndex()}");
-                $filial->codSuporte = $this->getString($sheet, "J{$row->getRowIndex()}");
-                $filial->icms = $this->getString($sheet, "K{$row->getRowIndex()}");
-                $filial->cdFaturamento = $this->getString($sheet, "L{$row->getRowIndex()}");
-                $filial->ledTime = $this->getString($sheet, "M{$row->getRowIndex()}");
+                $filial->id = $codBPSC;
+                $filial->idGrupo = $idGrupo;
+                $filial->nome = $nome;
+                $filial->codIsoWeb = $codIsoWeb;
+                $filial->documento = $documento;
+                $filial->uf = $uf;
+                $filial->nomeCidade = $nomeCidade;
+                $filial->especialidade = $especialidade;
+                $filial->icms = $icms;
+                $filial->cdFaturamento = $cdFaturamento;
+                $filial->ledTime = $ledTime;
 
                 if ($filial->save() === false) {
                     throw new FeedbackException(sprintf('%s<br>%s', 'Erro ao salvar a filial.', implode('<br>', $filial->getFirstErrors())));

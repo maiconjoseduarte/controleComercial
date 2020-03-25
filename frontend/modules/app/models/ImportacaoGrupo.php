@@ -26,14 +26,19 @@ class ImportacaoGrupo extends Importacao
             $transaction = Grupo::getDb()->beginTransaction();
             try {
 
+                $codigo = $this->getNumber($sheet, "A{$row->getRowIndex()}");
+                $nome = $this->getString($sheet, "B{$row->getRowIndex()}");
+                $status = $this->getNumber($sheet, "C{$row->getRowIndex()}");
+                $idGestor = $this->getNumber($sheet, "D{$row->getRowIndex()}");
+                $idSuporte = $this->getNumber($sheet, "E{$row->getRowIndex()}");
+
                 $grupo = new Grupo();
 
-                $grupo->id = $this->getString($sheet, "A{$row->getRowIndex()}");
-                $grupo->nome = $this->getString($sheet, "B{$row->getRowIndex()}");
-                $grupo->status = $this->getString($sheet, "C{$row->getRowIndex()}");
-                $grupo->idGestor = $this->getString($sheet, "D{$row->getRowIndex()}");
-                $grupo->idSuporte = $this->getString($sheet, "E{$row->getRowIndex()}");
-
+                $grupo->id =$codigo;
+                $grupo->nome = $nome;
+                $grupo->status = $status;
+                $grupo->idGestor = ($idGestor === 0) ? null : $idGestor;
+                $grupo->idSuporte = ($idSuporte === 0) ? null : $idSuporte;
 
                 if ($grupo->save() === false) {
                     throw new FeedbackException(sprintf('%s<br>%s', 'Erro ao salvar o grupo.', implode('<br>', $grupo->getFirstErrors())));

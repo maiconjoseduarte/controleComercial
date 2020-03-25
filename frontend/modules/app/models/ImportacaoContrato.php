@@ -26,23 +26,42 @@ class ImportacaoContrato extends Importacao
             $transaction = Contrato::getDb()->beginTransaction();
             try {
 
+                $idGrupo = $this->getString($sheet, "A{$row->getRowIndex()}");
+                $dataInicio = \DateTime::createFromFormat('!d/m/Y', $this->getString($sheet, "B{$row->getRowIndex()}"));
+                $totalReceitaLiquidaInicio = $this->getFloat($sheet, "C{$row->getRowIndex()}");
+                $margemBrutaPonderada = $this->getFloat($sheet, "D{$row->getRowIndex()}");
+                $dataUltimaRenovacao = \DateTime::createFromFormat('!d/m/Y', $this->getString($sheet, "E{$row->getRowIndex()}"));
+                $vencimento = \DateTime::createFromFormat('!d/m/Y', $this->getString($sheet, "F{$row->getRowIndex()}"));
+                $reajustePonderado = $this->getFloat($sheet, "G{$row->getRowIndex()}");
+                $margemBrutaPonderadaRenovacao = $this->getFloat($sheet, "H{$row->getRowIndex()}");
+                $totalReceitaLiquidaRenovacao = $this->getFloat($sheet, "I{$row->getRowIndex()}");
+                $condicaoPagamento = $this->getString($sheet, "J{$row->getRowIndex()}");
+                $minimo = $this->getFloat($sheet, "K{$row->getRowIndex()}");
+                $numeroLeitos = $this->getNumber($sheet, "L{$row->getRowIndex()}");
+                $tabela = $this->getString($sheet, "M{$row->getRowIndex()}");
+                $icms = $this->getFloat($sheet, "N{$row->getRowIndex()}");
+                $enquadramento = $this->getFloat($sheet, "O{$row->getRowIndex()}");
+//                if (is_float($enquadramento) === false || $enquadramento <= 0) {
+//                    throw new FeedbackException("O valor {} deve ser válido e maior que 0.");
+//                }
+
                 $contrato = new Contrato();
 
-                $contrato->idGrupo = $this->getString($sheet, "A{$row->getRowIndex()}");
-                $contrato->dataInicio = $this->getDate($sheet, "B{$row->getRowIndex()}");
-                $contrato->totalReceitaLiquidaInicio = $this->getString($sheet, "C{$row->getRowIndex()}");
-                $contrato->margemBrutaPonderada = $this->getString($sheet, "D{$row->getRowIndex()}");
-                $contrato->dataUltimaRenovacao = $this->getDate($sheet, "E{$row->getRowIndex()}");
-                $contrato->vencimento = $this->getDate($sheet, "F{$row->getRowIndex()}");
-                $contrato->reajustePonderado = $this->getString($sheet, "G{$row->getRowIndex()}");
-                $contrato->margemBrutaPonderadaRenovacao = $this->getString($sheet, "H{$row->getRowIndex()}");
-                $contrato->totalReceitaLiquidaRenovacao = $this->getString($sheet, "I{$row->getRowIndex()}");
-                $contrato->condicaoPagamento = $this->getString($sheet, "J{$row->getRowIndex()}");
-                $contrato->minimo = $this->getString($sheet, "K{$row->getRowIndex()}");
-                $contrato->numeroLeitos = $this->getString($sheet, "L{$row->getRowIndex()}");
-                $contrato->tabela = $this->getString($sheet, "M{$row->getRowIndex()}");
-                $contrato->icms = $this->getString($sheet, "N{$row->getRowIndex()}");
-                $contrato->enquadramento = $this->getString($sheet, "O{$row->getRowIndex()}");
+                $contrato->idGrupo = $idGrupo;
+                $contrato->dataInicio = $dataInicio->format('Y-m-d');
+                $contrato->totalReceitaLiquidaInicio = $totalReceitaLiquidaInicio;
+                $contrato->margemBrutaPonderada = $margemBrutaPonderada;
+                $contrato->dataUltimaRenovacao = $dataUltimaRenovacao->format('Y-m-d');
+                $contrato->vencimento = $vencimento->format('Y-m-d');
+                $contrato->reajustePonderado = $reajustePonderado;
+                $contrato->margemBrutaPonderadaRenovacao = $margemBrutaPonderadaRenovacao;
+                $contrato->totalReceitaLiquidaRenovacao = $totalReceitaLiquidaRenovacao;
+                $contrato->condicaoPagamento = $condicaoPagamento;
+                $contrato->minimo = $minimo;
+                $contrato->numeroLeitos = $numeroLeitos;
+                $contrato->tabela = $tabela;
+                $contrato->icms = $icms;
+                $contrato->enquadramento =$enquadramento;
 
                 if ($contrato->save() === false) {
                     throw new FeedbackException(sprintf('%s<br>%s', 'Erro ao salvar o contrato.', implode('<br>', $contrato->getFirstErrors())));
