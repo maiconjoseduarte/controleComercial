@@ -48,15 +48,9 @@ $data = Grupo::select2Data();
         <div class="col-md-3">
             <?= $form->field($model, 'especialidade')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'codResponsavel')->textInput() ?>
-        </div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'codSuporte')->textInput(['maxlength' => true]) ?>
-        </div>
         <div class="col-md-3">
             <?= $form->field($model, 'icms')->textInput() ?>
         </div>

@@ -21,7 +21,7 @@ class FilialSearch extends Filial
     public function rules()
     {
         return [
-            [['id', 'idGrupo', 'codIsoWeb', 'codResponsavel', 'codSuporte', 'icms', 'ledTime'], 'integer'],
+            [['id', 'idGrupo', 'codIsoWeb', 'icms', 'ledTime'], 'integer'],
             [['nome', 'documento', 'uf', 'nomeCidade', 'especialidade', 'cdFaturamento', 'create_at', 'update_at'], 'safe'],
             [['pageSize'], 'in', 'range' => array_keys(self::$OPCOES_PAGINACAO)],
         ];
@@ -68,8 +68,6 @@ class FilialSearch extends Filial
             'id' => $this->id,
             'idGrupo' => $this->idGrupo,
             'codIsoWeb' => $this->codIsoWeb,
-            'codResponsavel' => $this->codResponsavel,
-            'codSuporte' => $this->codSuporte,
             'icms' => $this->icms,
             'ledTime' => $this->ledTime,
             'create_at' => $this->create_at,

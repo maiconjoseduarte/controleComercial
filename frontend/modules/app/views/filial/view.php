@@ -35,8 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'documento',
                         'uf',
                         'nomeCidade',
-                        'codResponsavel',
-                        'codSuporte',
                         'especialidade',
                         'icms',
                         'cdFaturamento',
