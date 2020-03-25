@@ -10,6 +10,10 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'currencyCode' => 'R$ ',
+        ],
         'session' => [
             'class' => 'yii\web\Session',
             'cookieParams' => ['lifetime' => 1800],

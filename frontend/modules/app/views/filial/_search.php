@@ -1,7 +1,9 @@
 <?php
 
 use common\components\Layout;
+use common\models\Grupo;
 use frontend\modules\app\models\FilialSearch;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,6 +20,15 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <div class="row">
+        <div class="col-md-3">
+            <?= $form->field($model, 'idGrupo')->widget(Select2::className(), [
+                'data' => Grupo::select2Data(),
+                'options' => ['placeholder' => 'Select a state ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]) ?>
+        </div>
         <div class="col-md-3">
             <?= $form->field($model, 'id') ?>
         </div>

@@ -46,7 +46,7 @@ class GrupoSearch extends Grupo
      */
     public function search($params)
     {
-        $query = Grupo::find();
+        $query = Grupo::find()->orderBy(['nome' => SORT_ASC]);
 
         // add conditions that should always apply here
 
@@ -69,8 +69,6 @@ class GrupoSearch extends Grupo
             'status' => $this->status,
             'idGestor' => $this->idGestor,
             'idSuporte' => $this->idSuporte,
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome]);

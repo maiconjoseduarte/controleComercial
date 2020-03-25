@@ -19,10 +19,6 @@ $data = \common\models\Grupo::select2Data();
 
     <div class="row">
         <div class="col-md-3">
-            <?= $form->field($model, 'id') ?>
-
-        </div>
-        <div class="col-md-3">
             <?= $form->field($model, 'idGrupo')->widget(\kartik\select2\Select2::className(), [
                 'data' => $data,
                 'options' => ['placeholder' => 'Select a state ...'],

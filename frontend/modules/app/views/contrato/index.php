@@ -92,12 +92,29 @@ $canDelete = Yii::$app->user->can('app/contrato/delete');
                             },
                         ],
 
-                        'id',
-                        'idGrupo',
-                        'dataInicio',
-                        'totalReceitaLiquidaInicio',
+                        [
+                            'label' => 'Grupo',
+                            'attribute' => 'grupo.nome',
+                        ],
+                        [
+                            'format' => ['date', 'php: d/m/Y'],
+                            'attribute' => 'dataInicio',
+                        ],
+                        [
+                            "format" => 'currency',
+                            'attribute' => 'totalReceitaLiquidaInicio',
+//                            'value' => function (\common\models\Contrato $model) {
+//                                return Yii::$app->formatter->asDecimal($model->totalReceitaLiquidaInicio, 2);
+//                            }
+                        ],
                         'margemBrutaPonderada',
-                        //'dataUltimaRenovacao',
+                        [
+//                            'format' => ['date', 'php: d/m/Y'],
+                            'attribute' => 'dataUltimaRenovacao',
+                            'value' => function (\common\models\Contrato $model) {
+                                return Yii::$app->formatter->asDate($model->dataUltimaRenovacao, 'php: d/M/Y');
+                            }
+                        ],
                         //'vencimento',
                         //'reajustePonderado',
                         //'margemBrutaPonderadaRenovacao',
