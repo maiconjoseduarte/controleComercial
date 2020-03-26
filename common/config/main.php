@@ -13,6 +13,8 @@ return [
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'currencyCode' => 'R$ ',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => '.'
         ],
         'session' => [
             'class' => 'yii\web\Session',
