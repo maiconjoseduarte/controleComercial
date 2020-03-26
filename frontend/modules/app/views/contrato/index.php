@@ -107,7 +107,10 @@ $canDelete = Yii::$app->user->can('app/contrato/delete');
 //                                return Yii::$app->formatter->asDecimal($model->totalReceitaLiquidaInicio, 2);
 //                            }
                         ],
-                        'margemBrutaPonderada',
+                        [
+                            'format' => ['decimal', 2],
+                            'attribute' => 'margemBrutaPonderada',
+                        ],
                         [
 //                            'format' => ['date', 'php: d/m/Y'],
                             'attribute' => 'dataUltimaRenovacao',

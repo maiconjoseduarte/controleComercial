@@ -65,24 +65,81 @@ $data = Grupo::select2Data();
     </div>
 
     <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'margemBrutaPonderada')->textInput() ?>
+        <div class="col-md-2">
+            <?= $form->field($model, 'margemBrutaPonderada')->widget(\yii\widgets\MaskedInput::className(), [
+                'clientOptions' => [
+                    'alias' => 'decimal',
+                    'integerDigits' => 3,
+                    'digits' => 2,
+                    'integerOptional' => true,
+                    'digitsOptional' => false,
+                    'decimalProtect' => false,
+                    'autoUnmask' => true,
+                    'removeMaskOnSubmit' => true,
+                    'unmaskAsNumber' => true,
+                    'enforceDigitsOnBlur' => true,
+                    'rightAlign' => false,
+                    'allowPlus' => false,
+                    'allowMinus' => false,
+                    'radixPoint' => ',',
+                    'groupSeparator' => '.',
+                    'autoGroup' => true
+                ],
+            ]) ?>
         </div>
 
         <div class="col-md-3">
-            <?= $form->field($model, 'totalReceitaLiquidaInicio')->textInput() ?>
+            <?= $form->field($model, 'totalReceitaLiquidaInicio')->widget(\kartik\money\MaskMoney::className())?>
         </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'reajustePonderado')->textInput() ?>
+        <div class="col-md-2">
+            <?= $form->field($model, 'reajustePonderado')->widget(\yii\widgets\MaskedInput::className(), [
+                'clientOptions' => [
+                    'alias' => 'decimal',
+                    'integerDigits' => 3,
+                    'digits' => 2,
+                    'integerOptional' => true,
+                    'digitsOptional' => false,
+                    'decimalProtect' => false,
+                    'autoUnmask' => true,
+                    'removeMaskOnSubmit' => true,
+                    'unmaskAsNumber' => true,
+                    'enforceDigitsOnBlur' => true,
+                    'rightAlign' => false,
+                    'allowPlus' => false,
+                    'allowMinus' => false,
+                    'radixPoint' => ',',
+                    'groupSeparator' => '.',
+                    'autoGroup' => true
+                ],
+            ])  ?>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'margemBrutaPonderadaRenovacao')->textInput() ?>
+        <div class="col-md-2">
+            <?= $form->field($model, 'margemBrutaPonderadaRenovacao')->widget(\yii\widgets\MaskedInput::className(), [
+                'clientOptions' => [
+                    'alias' => 'decimal',
+                    'integerDigits' => 3,
+                    'digits' => 2,
+                    'integerOptional' => true,
+                    'digitsOptional' => false,
+                    'decimalProtect' => false,
+                    'autoUnmask' => true,
+                    'removeMaskOnSubmit' => true,
+                    'unmaskAsNumber' => true,
+                    'enforceDigitsOnBlur' => true,
+                    'rightAlign' => false,
+                    'allowPlus' => false,
+                    'allowMinus' => false,
+                    'radixPoint' => ',',
+                    'groupSeparator' => '.',
+                    'autoGroup' => true
+                ],
+            ])  ?>
         </div>
         <div class="col-md-3">
-            <?= $form->field($model, 'totalReceitaLiquidaRenovacao')->textInput() ?>
+            <?= $form->field($model, 'totalReceitaLiquidaRenovacao')->widget(\kartik\money\MaskMoney::className()) ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'condicaoPagamento')->textInput() ?>
@@ -99,8 +156,27 @@ $data = Grupo::select2Data();
         <div class="col-md-3">
             <?= $form->field($model, 'tabela')->textInput() ?>
         </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'icms')->textInput() ?>
+        <div class="col-md-2">
+            <?= $form->field($model, 'icms')->widget(\yii\widgets\MaskedInput::className(), [
+                'clientOptions' => [
+                    'alias' => 'decimal',
+                    'integerDigits' => 3,
+                    'digits' => 2,
+                    'integerOptional' => true,
+                    'digitsOptional' => false,
+                    'decimalProtect' => false,
+                    'autoUnmask' => true,
+                    'removeMaskOnSubmit' => true,
+                    'unmaskAsNumber' => true,
+                    'enforceDigitsOnBlur' => true,
+                    'rightAlign' => false,
+                    'allowPlus' => false,
+                    'allowMinus' => false,
+                    'radixPoint' => ',',
+                    'groupSeparator' => '.',
+                    'autoGroup' => true
+                ],
+            ])  ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'enquadramento')->textInput() ?>

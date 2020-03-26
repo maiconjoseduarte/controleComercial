@@ -25,7 +25,8 @@
         "kartik-v/yii2-widget-select2": "dev-master",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-widget-fileinput": "dev-master",
-        "phpoffice/phpspreadsheet": "^1.11"
+        "phpoffice/phpspreadsheet": "^1.11",
+        "kartik-v/yii2-money": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

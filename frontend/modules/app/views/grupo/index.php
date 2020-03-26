@@ -98,7 +98,7 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                         'attribute' => 'nome',
                         'format' => 'html',
                         'value' => function (Grupo $model) {
-                            return Html::a($model->nome, ['view', 'id' => $model->id], ['style' => 'text-decoration:none; color: #008749;']);
+                            return Html::a($model->nome, ['view', 'id' => $model->id], ['style' => 'text-decoration:none; color: #4f69b7;']);
                         }
                     ],
                     [

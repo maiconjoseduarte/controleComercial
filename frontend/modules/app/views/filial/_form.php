@@ -39,7 +39,7 @@ $data = Grupo::select2Data();
     <div class="row">
         <div class="col-md-3">
             <?= $form->field($model, 'documento')->widget(\yii\widgets\MaskedInput::className(), [
-                'mask' => '99.999.999/999-99'
+                'mask' => '99.999.999/9999-99'
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -52,7 +52,26 @@ $data = Grupo::select2Data();
 
     <div class="row">
         <div class="col-md-3">
-            <?= $form->field($model, 'icms')->textInput() ?>
+            <?= $form->field($model, 'icms')->widget(\yii\widgets\MaskedInput::className(), [
+                'clientOptions' => [
+                    'alias' => 'decimal',
+                    'integerDigits' => 3,
+                    'digits' => 2,
+                    'integerOptional' => true,
+                    'digitsOptional' => false,
+                    'decimalProtect' => false,
+                    'autoUnmask' => true,
+                    'removeMaskOnSubmit' => true,
+                    'unmaskAsNumber' => true,
+                    'enforceDigitsOnBlur' => true,
+                    'rightAlign' => false,
+                    'allowPlus' => false,
+                    'allowMinus' => false,
+                    'radixPoint' => ',',
+                    'groupSeparator' => '.',
+                    'autoGroup' => true
+                ],
+            ]) ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'cdFaturamento')->textInput(['maxlength' => true]) ?>
