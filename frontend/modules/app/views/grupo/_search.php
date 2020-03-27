@@ -19,17 +19,12 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?= $form->field($model, 'id') ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'nome') ?>
         </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'status')->dropDownList(\common\models\Grupo::$OPCOES_STATUS, ['prompt' => '']) ?>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-3">
             <?= $form->field($model, 'idGestor')->widget(Select2::className(), [
                 'data' => Colaborador::select2Data(Colaborador::GESTOR),
@@ -48,7 +43,12 @@ use yii\widgets\ActiveForm;
                 ],
             ]) ?>
         </div>
-        <div class="col-md-3">
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <?= $form->field($model, 'status')->dropDownList(\common\models\Grupo::$OPCOES_STATUS, ['prompt' => '']) ?>
+        </div>
+        <div class="col-md-2">
             <?= $form->field($model, 'pageSize')->dropDownList(GrupoSearch::$OPCOES_PAGINACAO) ?>
         </div>
     </div>

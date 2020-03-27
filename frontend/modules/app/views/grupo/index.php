@@ -98,7 +98,7 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                         'attribute' => 'nome',
                         'format' => 'html',
                         'value' => function (Grupo $model) {
-                            return Html::a($model->nome, ['view', 'id' => $model->id], ['style' => 'text-decoration:none; color: #4f69b7;']);
+                            return $model->nome ?? '';
                         }
                     ],
                     [
@@ -110,13 +110,22 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                     [
                         'attribute' => 'idGestor',
                         'value' => function (Grupo $model) {
-                            return $model->gestor->nome ?? null ;
+                            return $model->gestor->nome ?? '' ;
                         }
                     ],
                     [
                         'attribute' => 'idSuporte',
                         'value' => function (Grupo $model) {
-                            return $model->suporte->nome ?? null;
+                            return $model->suporte->nome ?? '';
+                        }
+                    ],
+                    [
+                        'label' => 'Vencimento',
+                        'value' => function (Grupo $model) {
+                            if (!empty($model->contrato->vencimento)) {
+                                return Yii::$app->formatter->asDate($model->contrato->vencimento, 'php: d/m/Y');
+                            }
+                            return '';
                         }
                     ],
                 ],

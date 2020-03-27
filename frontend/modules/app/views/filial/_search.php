@@ -20,22 +20,22 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-5">
             <?= $form->field($model, 'idGrupo')->widget(Select2::className(), [
                 'data' => Grupo::select2Data(),
-                'options' => ['placeholder' => 'Select a state ...'],
+                'options' => ['placeholder' => 'Selecione...'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
             ]) ?>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?= $form->field($model, 'id') ?>
         </div>
         <div class="col-md-3">
-            <?= $form->field($model, 'nome') ?>
+            <?= $form->field($model, 'documento') ?>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?= $form->field($model, 'pageSize')->dropDownList(FilialSearch::$OPCOES_PAGINACAO) ?>
         </div>
     </div>

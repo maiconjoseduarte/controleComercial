@@ -1,6 +1,7 @@
 <?php
 
 use common\components\Layout;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -10,7 +11,6 @@ use yii\widgets\ActiveForm;
 
 $data = \common\models\Grupo::select2Data();
 ?>
-
 <div class="contrato-search">
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,10 +18,10 @@ $data = \common\models\Grupo::select2Data();
     ]); ?>
 
     <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'idGrupo')->widget(\kartik\select2\Select2::className(), [
+        <div class="col-md-5">
+            <?= $form->field($model, 'idGrupo')->widget(Select2::className(), [
                 'data' => $data,
-                'options' => ['placeholder' => 'Select a state ...'],
+                'options' => ['placeholder' => 'Selecione ...'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],

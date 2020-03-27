@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contrato */
 
-$this->title = 'Editar Contrato: ' . $model->id;
+$this->title = "{$model->grupo->id} - {$model->grupo->nome}";
 $this->params['breadcrumbs'][] = ['label' => 'Contratos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->grupo->nome, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Editar';
 ?>
 <div class="row">

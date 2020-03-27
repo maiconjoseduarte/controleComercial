@@ -91,20 +91,17 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                             }
                         },
                     ],
-                    'codIsoWeb',
-                    'id',
+                    [
+                        'attribute' => 'grupo.id',
+                    ],
                     [
                         'label' => 'Grupo',
                         'attribute' => 'grupo.nome',
                     ],
+                    'codIsoWeb',
+                    'id',
                     'nome',
                     'documento',
-//                    'uf',
-//                    'nomeCidade' ,
-//                    'especialidade' ,
-//                    'icms' ,
-//                    'cdFaturamento',
-//                    'ledTime',
                     [
                         'label' => 'Gestor',
                         'value' => function (\common\models\Filial $model) {
@@ -117,10 +114,6 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                             return $model->grupo->suporte->nome ?? null;
                         },
                     ],
-                    // adicionar gestor
-                    // adicionar suporte
-
-                    ['class' => 'yii\grid\ActionColumn'],
                 ],
                 'export' => [
                     'header' => html_entity_decode('<li role="presentation" class="dropdown-header">Opções:</li>'),

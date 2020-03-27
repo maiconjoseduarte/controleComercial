@@ -2,6 +2,7 @@
 
 use common\components\Icones;
 use common\components\Layout;
+use common\models\Contrato;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
@@ -91,45 +92,25 @@ $canDelete = Yii::$app->user->can('app/contrato/delete');
                                 }
                             },
                         ],
-
+                        [
+                            'attribute' => 'grupo.id',
+                        ],
                         [
                             'label' => 'Grupo',
                             'attribute' => 'grupo.nome',
                         ],
                         [
-                            'format' => ['date', 'php: d/m/Y'],
-                            'attribute' => 'dataInicio',
-                        ],
-                        [
-                            "format" => 'currency',
-                            'attribute' => 'totalReceitaLiquidaInicio',
-//                            'value' => function (\common\models\Contrato $model) {
-//                                return Yii::$app->formatter->asDecimal($model->totalReceitaLiquidaInicio, 2);
-//                            }
-                        ],
-                        [
-                            'format' => ['decimal', 2],
-                            'attribute' => 'margemBrutaPonderada',
-                        ],
-                        [
-//                            'format' => ['date', 'php: d/m/Y'],
                             'attribute' => 'dataUltimaRenovacao',
-                            'value' => function (\common\models\Contrato $model) {
-                                return Yii::$app->formatter->asDate($model->dataUltimaRenovacao, 'php: d/M/Y');
+                            'value' => function (Contrato $model) {
+                                return Yii::$app->formatter->asDate($model->dataUltimaRenovacao, 'php: d/n/Y');
                             }
                         ],
-                        //'vencimento',
-                        //'reajustePonderado',
-                        //'margemBrutaPonderadaRenovacao',
-                        //'totalReceitaLiquidaRenovacao',
-                        //'condicaoPagamento',
-                        //'minimo',
-                        //'numeroLeitos',
-                        //'tabela',
-                        //'icms',
-                        //'enquadramento',
-                        //'create_at',
-                        //'update_at',
+                        [
+                            'attribute' => 'vencimento',
+                            'value' => function (Contrato $model) {
+                                return Yii::$app->formatter->asDate($model->vencimento, 'php: d/n/Y');
+                            }
+                        ],
                     ],
                     'export' => [
                         'header' => html_entity_decode('<li role="presentation" class="dropdown-header">Opções:</li>'),
