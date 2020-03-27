@@ -6,11 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contrato */
 
-$this->title = $model->id;
+$this->title = "{$model->grupo->id} - {$model->grupo->nome}";
 $this->params['breadcrumbs'][] = ['label' => 'Contratos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="mb-3 card">
@@ -24,31 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
-                <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                        'id',
-                        'idGrupo',
-                        'dataInicio',
-                        'totalReceitaLiquidaInicio',
-                        'margemBrutaPonderada',
-                        'dataUltimaRenovacao',
-                        'vencimento',
-                        'reajustePonderado',
-                        'margemBrutaPonderadaRenovacao',
-                        'totalReceitaLiquidaRenovacao',
-                        'condicaoPagamento',
-                        'minimo',
-                        'numeroLeitos',
-                        'tabela',
-                        'icms',
-                        'enquadramento',
-                        'create_at',
-                        'update_at',
-                    ],
-                ]) ?>
-            </div>
+            <?= $this->render('_form', [
+                'model' => $model,
+                'disabled' => true,
+            ]) ?>
         </div>
     </div>
 </div>

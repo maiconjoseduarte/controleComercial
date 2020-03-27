@@ -11,10 +11,11 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contrato */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $disabled bool */
 
 ?>
 <div class="card-body">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'form-contratos']); ?>
 
     <div class="shadow-sm p-3 mb-3 bg-light rounded shadow-style">Informações Gerais</div>
 
@@ -152,7 +153,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group mt-5">
-        <?= Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
+        <?= (isset($disabled)) ? '' : Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
         <?= Html::a(Layout::BTN_VOLTAR_LABEL, Url::to(['index']), ['class' => Layout::BTN_DEFAULT]) ?>
     </div>
 
@@ -169,3 +170,14 @@ $this->registerCss(<<<CSS
 }
 CSS
 );
+
+if (isset($disabled)) {
+$this->registerJs(<<<JS
+    jQuery(document).ready(function() {
+      const element = jQuery("form#form-contratos input").each((index, element) => {
+         jQuery(element).attr("disabled", "disabled");
+      });
+    });
+JS
+);
+}
