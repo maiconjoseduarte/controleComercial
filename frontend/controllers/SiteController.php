@@ -461,14 +461,17 @@ class SiteController extends Controller
         $importacaoGrupo = $auth->createPermission('app/importacao/importacao-grupo');
         $importacaoFilial = $auth->createPermission('app/importacao/importacao-filial');
         $importacaoContrato = $auth->createPermission('app/importacao/importacao-contrato');
+        $importacaoItensContrato = $auth->createPermission('app/importacao/importacao-itens-contrato');
 
         $auth->add($importacaoGrupo);
         $auth->add($importacaoFilial);
         $auth->add($importacaoContrato);
+        $auth->add($importacaoItensContrato);
 
         $auth->addChild($admin, $importacaoGrupo);
         $auth->addChild($admin, $importacaoFilial);
         $auth->addChild($admin, $importacaoContrato);
+        $auth->addChild($admin, $importacaoItensContrato);
 
         /*
          * FIM Importação
