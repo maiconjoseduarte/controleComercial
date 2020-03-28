@@ -8,6 +8,7 @@ use frontend\modules\app\models\ImportacaoContrato;
 use frontend\modules\app\models\ImportacaoFilial;
 use frontend\modules\app\models\ImportacaoGrupo;
 use common\components\AuthController;
+use frontend\modules\app\models\ImportacaoItensContrato;
 use frontend\modules\app\models\ImportacaoJuridico;
 use Yii;
 use yii\filters\VerbFilter;
@@ -118,4 +119,23 @@ class ImportacaoController extends AuthController
         return $this->render('importacao', ['importacao' => $importacao]);
     }
 
+    public function actionImportacaoItensContrato()
+    {
+        $importacao = new ImportacaoItensContrato();
+
+        if (\Yii::$app->request->isPost && $importacao->load(\Yii::$app->request->post())) {
+            $importacao->arquivo = UploadedFile::getInstance($importacao, 'arquivo');
+            if ($importacao->validate()) {
+                try {
+                    $importacao->run();
+                } catch (FeedbackException $e) {
+                    \Yii::$app->session->addFlash('error', $e->getMessage());
+                }
+            } else {
+                \Yii::$app->session->addFlash('error', 'Erro ao validar importação, favor corrigir os erros apontados.');
+            }
+        }
+
+        return $this->render('importacao', ['importacao' => $importacao]);
+    }
 }

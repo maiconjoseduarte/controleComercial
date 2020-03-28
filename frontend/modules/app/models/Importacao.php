@@ -3,6 +3,7 @@
 namespace frontend\modules\app\models;
 
 use common\exceptions\FeedbackException;
+use common\models\Grupo;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\BaseReader;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -30,6 +31,8 @@ abstract class Importacao extends Model
     /** @var UploadedFile */
     public $arquivo;
 
+    public $idGrupo;
+
     /**
      * Continuar se algum erro acontecer no processamento de dados.
      *
@@ -52,9 +55,15 @@ abstract class Importacao extends Model
     {
         return [
             [['arquivo'], 'required'],
+            [['idGrupo'], 'required',
+                'when' => function() {
+                    return $this instanceof ImportacaoItensContrato ;
+                }
+            ],
             [['continuarProcessamento'], 'default', 'value' => true],
             [['continuarProcessamento'], 'boolean', 'trueValue' => true, 'falseValue' => false],
             [['arquivo'], 'file', 'extensions' => ['xlsx', 'xlsm', 'xltx', 'xltm', 'xls', 'xlt', 'xlm', 'ods', 'ots'], 'maxSize' => 1024*1024*5, 'checkExtensionByMimeType' => false],
+            [['idGrupo'], 'exist', 'skipOnError' => true, 'targetClass' => Grupo::className(), 'targetAttribute' => ['idGrupo' => 'id']],
         ];
     }
 
@@ -70,6 +79,7 @@ abstract class Importacao extends Model
     {
         return [
             'arquivo' => 'Arquivo',
+            'idGrupo' => 'Grupo',
             'continuarProcessamento' => 'Não interromper importação com erros.',
         ];
     }

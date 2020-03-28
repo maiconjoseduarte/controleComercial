@@ -105,6 +105,7 @@ $link = $_GET['r'] ?? null;
                     $show = '';
                     if (strstr($link,'app/importacao/importacao-grupo') ||
                         strstr($link,'app/importacao/importacao-contrato') ||
+                        strstr($link,'app/importacao/importacao-itens-contrato') ||
                         strstr($link,'app/importacao/importacao-filial') ) {
                         $show = ' mm-show';
                     }
@@ -135,6 +136,15 @@ $link = $_GET['r'] ?? null;
                                 Contrato
                             </a>
                         </li>
+                        <?php endif; ?>
+
+                        <?php if (Yii::$app->user->can('app/importacao/importacao-itens-contrato')) : ?>
+                            <li>
+                                <a href="<?= Url::to(['/app/importacao/importacao-itens-contrato']) ?>" class="<?= strstr($link,'app/importacao/importacao-itens-contrato') ? 'mm-active' : ''; ?>">
+                                    <i class="metismenu-icon"></i>
+                                    Itens Contrato
+                                </a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </li>

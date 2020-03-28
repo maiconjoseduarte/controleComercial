@@ -3,6 +3,7 @@
 use common\components\Layout;
 use frontend\modules\app\models\Importacao;
 use common\components\Icones;
+use frontend\modules\app\models\ImportacaoItensContrato;
 use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\web\JsExpression;
@@ -28,9 +29,26 @@ $this->title = 'Importação '. $importacao->nome ?? null;
                 </ul>
             </div>
             <div class="card-body">
-        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'autocomplete' => 'off']]); ?>
+                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'autocomplete' => 'off']]); ?>
+                <div class="row">
+                    <?php
+                    if (
+                        $importacao instanceof ImportacaoItensContrato
+                    ):
+                        ?>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <?= $form->field($importacao, 'idGrupo')->widget(\kartik\select2\Select2::className(), [
+                                'data' => \common\models\Grupo::select2Data(),
+                                'options' => ['placeholder' => 'Selecione um grupo ...'],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]) ?>
+                        </div>
+                    <?php
+                    endif;
+                    ?>
 
-        <div class="row">
             <div class="sm-12 col-md-6 col-lg-6">
                 <?= $form->field($importacao, 'arquivo')->widget(FileInput::classname(), [
                     'pluginOptions' => [
