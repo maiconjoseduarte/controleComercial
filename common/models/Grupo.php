@@ -131,7 +131,7 @@ class Grupo extends \yii\db\ActiveRecord
     {
         $results = [];
 
-        $grupos = self::find()->all();
+        $grupos = self::find()->orderBy(['nome' => SORT_ASC])->all();
 
         /** @var Grupo[] $grupos */
         if ($grupos != null) {

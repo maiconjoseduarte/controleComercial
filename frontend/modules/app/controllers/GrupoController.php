@@ -5,6 +5,7 @@ namespace app\modules\app\controllers;
 use common\components\AuthController;
 use common\exceptions\FeedbackException;
 use common\models\Filial;
+use common\models\ItensContrato;
 use Yii;
 use common\models\Grupo;
 use frontend\modules\app\models\GrupoSearch;
@@ -62,9 +63,15 @@ class GrupoController extends AuthController
             'pagination' => false
         ]);
 
+        $itensContrato = new ActiveDataProvider([
+            'query' => ItensContrato::find()->where(['idGrupo' => $model->id]),
+            'pagination' => false
+        ]);
+
         return $this->render('view', [
             'model' => $model,
-            'filiais' => $filiais
+            'filiais' => $filiais,
+            'itensContrato' => $itensContrato
         ]);
     }
 

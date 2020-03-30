@@ -170,6 +170,13 @@ abstract class Importacao extends Model
         return floatval(trim($sheet->getCell($coordenada)->getValue()));
     }
 
+    protected function getMoeda(Worksheet $sheet, string $coordenada)
+    {
+        $value = floatval(trim($sheet->getCell($coordenada)->getFormattedValue()));
+
+        return number_format($value, 2, '.', '');
+    }
+
     /**
      * Retorna um object \DateTime ou false caso a conversão falhou.
      *

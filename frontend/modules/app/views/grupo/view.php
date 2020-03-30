@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Grupo */
 /* @var $filiais \yii\data\ActiveDataProvider */
+/* @var $itensContrato \yii\data\ActiveDataProvider */
 
 
 $this->title = $model->nome;
@@ -89,6 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="card card-block">
                                 <?= $this->render('_info-itens-contrato', [
                                     'model' => $model,
+                                    'itensContrato' => $itensContrato
                                 ]) ?>
                             </div>
                         </div>

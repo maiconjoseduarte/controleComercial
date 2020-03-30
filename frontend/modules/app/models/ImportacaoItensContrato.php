@@ -36,7 +36,7 @@ class ImportacaoItensContrato extends Importacao
                 $unMedida = $this->getString($sheet, "F{$row->getRowIndex()}");
                 $consumoAnual = $this->getNumber($sheet, "G{$row->getRowIndex()}");
                 $preco = $this->getFloat($sheet, "H{$row->getRowIndex()}");
-                $valorAnual = $this->getFloat($sheet, "I{$row->getRowIndex()}");
+                $valorAnual = $this->getMoeda($sheet, "I{$row->getRowIndex()}");
                 $vigencia = \DateTime::createFromFormat('!d/m/Y', $this->getString($sheet, "J{$row->getRowIndex()}"));
                 $obs = $this->getString($sheet, "K{$row->getRowIndex()}");
 
