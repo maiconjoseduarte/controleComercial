@@ -17,6 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 $canCreate = Yii::$app->user->can('app/colaborador/create');
 $canUpdate = Yii::$app->user->can('app/colaborador/update');
 $canDelete = Yii::$app->user->can('app/colaborador/delete');
+
+
+$create = ($canCreate) ? Html::a('<i class="' . Icones::ADD . '"></i> ' . Layout::BTN_ADD_LABEL, ['create', 'idGrupo' => $idGrupo], ['class' => Layout::BTN_NOVO, 'style' => 'margin-right: 3px;']) : ''
+
 ?>
 <div class="row">
     <div class="col-md-12 col-lg-12">
@@ -34,6 +38,10 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
                         'heading' => false
                     ],
                     'toolbar' => [
+                        [
+                            'content'=>
+                            $create
+                        ],
                         '<div class="pull-right">{export}</div>',
                     ],
                     'columns' => [

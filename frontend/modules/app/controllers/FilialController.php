@@ -4,6 +4,7 @@ namespace app\modules\app\controllers;
 
 use common\components\AuthController;
 use common\exceptions\FeedbackException;
+use common\models\Grupo;
 use Yii;
 use common\models\Filial;
 use frontend\modules\app\models\FilialSearch;
@@ -67,9 +68,11 @@ class FilialController extends AuthController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($idGrupo)
     {
+        $grupo = Grupo::findOne($idGrupo);
         $model = new Filial();
+        $model->idGrupo = $grupo->id;
 
         if ($model->load(Yii::$app->request->post())) {
             $transaction = Yii::$app->db->beginTransaction();
@@ -82,7 +85,7 @@ class FilialController extends AuthController
                 $transaction->commit();
                 Yii::$app->session->addFlash('success', 'Filial cadastrada com sucesso.');
 
-                return $this->redirect(['index']);
+                return $this->redirect(['index', 'idGrupo' => $model->idGrupo]);
             } catch (FeedbackException $e) {
                 Yii::$app->session->addFlash('error', $e->getMessage());
                 $transaction->rollBack();
@@ -120,7 +123,7 @@ class FilialController extends AuthController
                 $transaction->commit();
                 Yii::$app->session->addFlash('success', 'Filial editada com sucesso.');
 
-                return $this->redirect(['index']);
+                return $this->redirect(['index', 'idGrupo' => $model->idGrupo]);
             } catch (FeedbackException $e) {
                 Yii::$app->session->addFlash('error', $e->getMessage());
                 $transaction->rollBack();
@@ -158,7 +161,7 @@ class FilialController extends AuthController
                 $transaction->commit();
                 Yii::$app->session->addFlash('success', 'Filial excluida com sucesso.');
 
-                return $this->redirect(['index']);
+                return $this->redirect(['index', 'idGrupo' => $model->idGrupo]);
             } catch (FeedbackException $e) {
                 Yii::$app->session->addFlash('error', $e->getMessage());
                 $transaction->rollBack();

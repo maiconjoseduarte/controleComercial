@@ -78,7 +78,7 @@ $data = Grupo::select2Data();
 
     <div class="form-group mt-5">
         <?= Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
-        <?= Html::a(Layout::BTN_VOLTAR_LABEL, Url::to(['index']), ['class' => Layout::BTN_DEFAULT]) ?>
+        <?= Html::a(Layout::BTN_VOLTAR_LABEL, Url::to(['index', 'idGrupo' => $model->idGrupo]), ['class' => Layout::BTN_DEFAULT]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
