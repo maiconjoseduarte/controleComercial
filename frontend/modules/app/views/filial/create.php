@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Filial */
 
 $this->title = 'Novo Filial';
-$this->params['breadcrumbs'][] = ['label' => 'Filial', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Filial', 'url' => ['index', 'idGrupo' => $model->idGrupo]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
