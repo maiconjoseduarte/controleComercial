@@ -56,22 +56,35 @@ class GrupoController extends AuthController
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
+        $grupo = $this->findModel($id);
 
-        $filiais = new ActiveDataProvider([
-            'query' => Filial::find()->where(['idGrupo' => $model->id]),
-            'pagination' => false
-        ]);
+        $model = $grupo->contrato;
+        if ($model && $model->load(Yii::$app->request->post())) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
 
-        $itensContrato = new ActiveDataProvider([
-            'query' => ItensContrato::find()->where(['idGrupo' => $model->id]),
-            'pagination' => false
-        ]);
+                if ($model->save() === false) {
+                    throw new FeedbackException("Ocorreu um erro ao editar registro.");
+                }
 
-        return $this->render('view', [
+                $transaction->commit();
+                Yii::$app->session->addFlash('success', 'Contrato editado com sucesso.');
+
+                return $this->redirect(['view', 'id' => $model->idGrupo]);
+            } catch (FeedbackException $e) {
+                Yii::$app->session->addFlash('error', $e->getMessage());
+                $transaction->rollBack();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                Yii::error($e->getMessage());
+                Yii::$app->session->addFlash('error', 'Ocorreu um erro imprevisto.');
+            }
+        }
+
+        return $this->render('_info', [
             'model' => $model,
-            'filiais' => $filiais,
-            'itensContrato' => $itensContrato
+            'idGrupo' => $grupo->id,
+            'disabled' => false
         ]);
     }
 

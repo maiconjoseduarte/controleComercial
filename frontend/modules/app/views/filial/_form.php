@@ -16,6 +16,11 @@ use yii\widgets\MaskedInput;
 $data = Grupo::select2Data();
 ?>
 <div class="card-body">
+    <?= $this->render('@app/modules/app/views/grupo/botoes-topo', [
+        'idGrupo' => $model->idGrupo
+    ]); ?>
+    <hr class="mb-5">
+
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">

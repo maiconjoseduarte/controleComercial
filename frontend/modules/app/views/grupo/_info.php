@@ -1,67 +1,40 @@
 <?php
 
-use yii\widgets\DetailView;
-
 /* @var $this yii\web\View */
-/* @var $model \common\models\Grupo */
+/* @var $model common\models\Contrato */
+/* @var $form yii\widgets\ActiveForm */
+/* @var $disabled bool */
+/* @var $idGrupo string */
+
+$this->title = ($model) ? $model->grupo->nome : '';
+$this->params['breadcrumbs'][] = ['label' => 'Grupos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<h3 class="box-title-grupo">Informações Gerais</h3>
-<hr>
-<p></p>
 
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="mb-3 card">
+            <div class="card-body">
 
-<?php
-if ($model->contrato == null) {
-    return ;
-}
-?>
-    <br><br><br>
+                <?= $this->render('botoes-topo', [
+                    'idGrupo' => $idGrupo
+                ]); ?>
+                <hr class="mb-5">
 
-    <table class="table">
-        <tr>
-            <td>Código Corporativo: <?= $model->id ?></td>
-            <td>Cliente: <?= $model->nome ?></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Gestor: <?= $model->gestor->nome ?? null ?></td>
-            <td>Suporte: <?= $model->suporte->nome ?? null ?></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Inicío Contrato: <?= Yii::$app->formatter->asDate($model->contrato->dataInicio, 'dd/MM/Y') ?? null ?></td>
-            <td>Reinício: <?= Yii::$app->formatter->asDate($model->contrato->dataInicio, 'dd/MM/Y') ?? null ?></td>
-            <td>MB Ponderada: <?= $model->contrato->margemBrutaPonderada ?? null ?></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Data renovação: <?= Yii::$app->formatter->asDate($model->contrato->dataUltimaRenovacao, 'dd/MM/Y') ?? null ?></td>
-            <td>Vencimento: <?= Yii::$app->formatter->asDate($model->contrato->vencimento, 'dd/MM/Y') ?? null ?></td>
-            <td></td>
-            <td></td>
-        </tr
-        <tr>
-            <td>Reajuste ponderado: <?= $model->contrato->reajustePonderado ?? null ?></td>
-            <td>MB ponderada de renovação: <?= $model->contrato->margemBrutaPonderadaRenovacao ?? null ?></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>ICMS: <?= $model->contrato->icms ?? null ?></td>
-            <td>Tabela: <?= $model->contrato->tabela ?? null ?></td>
-            <td>Enquadramento: <?= $model->contrato->enquadramento ?? null ?></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>CP: <?= $model->contrato->condicaoPagamento ?? null ?></td>
-            <td>Mínimo: <?= $model->contrato->minimo ?? null ?></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+                <?php
+                    if ($model == false) {
+                        return;
+                    }
 
-<?php
+                    echo $this->render('@app/modules/app/views/contrato/_form', [
+                        'model' => $model,
+                        'disabled' => $disabled
+                    ]);
+                ?>
+
+            </div>
+        </div>
+    </div>
+</div>

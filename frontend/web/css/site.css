@@ -244,3 +244,12 @@ a.desc:after {
 .bg-red {
     background-color: #dd4b39;
 }
+.active-info {
+    font-weight: bold;
+    color: #0ba360;
+}
+
+.btn-opcoes-grupo {
+    margin-top: 5px;
+    width: 99%;
+}

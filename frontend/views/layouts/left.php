@@ -77,21 +77,21 @@ $link = $_GET['r'] ?? null;
                 <?php  endif; ?>
 
                 <?php if (Yii::$app->user->can('app/filial/index')) : ?>
-                <li>
-                    <a href="<?= Url::to(['/app/filial/index']) ?>" class="<?= strstr($link,'app/filial') ? 'mm-active' : ''; ?>">
-                        <i class="metismenu-icon pe-7s-mouse">
-                        </i>Filial
-                    </a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="--><?//= Url::to(['/app/filial/index']) ?><!--" class="--><?//= strstr($link,'app/filial') ? 'mm-active' : ''; ?><!--">-->
+<!--                        <i class="metismenu-icon pe-7s-mouse">-->
+<!--                        </i>Filial-->
+<!--                    </a>-->
+<!--                </li>-->
                 <?php  endif; ?>
 
                 <?php if (Yii::$app->user->can('app/contrato/index')) : ?>
-                <li>
-                    <a href="<?= Url::to(['/app/contrato/index']) ?>" class="<?= strstr($link,'app/contrato') ? 'mm-active' : ''; ?>">
-                        <i class="metismenu-icon pe-7s-mouse">
-                        </i>Contratos
-                    </a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="--><?//= Url::to(['/app/contrato/index']) ?><!--" class="--><?//= strstr($link,'app/contrato') ? 'mm-active' : ''; ?><!--">-->
+<!--                        <i class="metismenu-icon pe-7s-mouse">-->
+<!--                        </i>Contratos-->
+<!--                    </a>-->
+<!--                </li>-->
                 <?php  endif; ?>
 
                 <li class="app-sidebar__heading">Importações</li>

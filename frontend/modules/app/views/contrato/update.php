@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = 'Editar';
             </div>
             <?= $this->render('_form', [
                 'model' => $model,
+                'disabled' => false,
             ]) ?>
         </div>
     </div>

@@ -44,9 +44,13 @@ class FilialSearch extends Filial
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $idGrupo = false)
     {
         $query = Filial::find();
+
+        if ($idGrupo !=  false) {
+            $query->andWhere(['idGrupo' => $idGrupo]);
+        }
 
         // add conditions that should always apply here
 

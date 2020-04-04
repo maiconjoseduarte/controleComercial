@@ -153,7 +153,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group mt-5">
-        <?= (isset($disabled)) ? '' : Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
+        <?= ($disabled) ? '' : Html::submitButton(Layout::BTN_SUBMIT_LABEL, ['class' => Layout::BTN_SUBMIT]) ?>
         <?= Html::a(Layout::BTN_VOLTAR_LABEL, Url::to(['index']), ['class' => Layout::BTN_DEFAULT]) ?>
     </div>
 
@@ -171,7 +171,7 @@ $this->registerCss(<<<CSS
 CSS
 );
 
-if (isset($disabled)) {
+if ($disabled) {
 $this->registerJs(<<<JS
     jQuery(document).ready(function() {
       const element = jQuery("form#form-contratos input").each((index, element) => {

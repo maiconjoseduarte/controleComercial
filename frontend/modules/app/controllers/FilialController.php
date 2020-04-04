@@ -34,14 +34,15 @@ class FilialController extends AuthController
      * Lists all Filial models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($idGrupo)
     {
         $searchModel = new FilialSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $idGrupo);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'idGrupo' => $idGrupo
         ]);
     }
 
@@ -53,8 +54,11 @@ class FilialController extends AuthController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'idGrupo' => $model->idGrupo,
         ]);
     }
 
