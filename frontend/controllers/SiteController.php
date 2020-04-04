@@ -477,6 +477,39 @@ class SiteController extends Controller
          * FIM Importação
          */
 
+        /*
+         * Itens Contratos
+         */
+        $itensContratoIndex = $auth->createPermission('app/itens-contrato/index');
+        $itensContratoView = $auth->createPermission('app/itens-contrato/view');
+        $itensContratoCreate = $auth->createPermission('app/itens-contrato/create');
+        $itensContratoUpdate = $auth->createPermission('app/itens-contrato/update');
+        $itensContratoDelete = $auth->createPermission('app/itens-contrato/delete');
+
+        $auth->add($itensContratoIndex);
+        $auth->add($itensContratoView);
+        $auth->add($itensContratoCreate);
+        $auth->add($itensContratoUpdate);
+        $auth->add($itensContratoDelete);
+
+        $auth->addChild($admin, $itensContratoIndex);
+        $auth->addChild($admin, $itensContratoView);
+        $auth->addChild($admin, $itensContratoCreate);
+        $auth->addChild($admin, $itensContratoUpdate);
+        $auth->addChild($admin, $itensContratoDelete);
+
+        $auth->addChild($analista, $itensContratoIndex);
+        $auth->addChild($analista, $itensContratoView);
+        $auth->addChild($analista, $itensContratoCreate);
+        $auth->addChild($analista, $itensContratoUpdate);
+        $auth->addChild($analista, $itensContratoDelete);
+
+        $auth->addChild($assistente, $itensContratoIndex);
+        $auth->addChild($assistente, $itensContratoView);
+        /*
+         * FIM Contratos
+         */
+
         $auth->assign($admin, 1);
         $auth->assign($admin, 2);
         $auth->assign($analista, 7);

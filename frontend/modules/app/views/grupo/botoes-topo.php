@@ -28,7 +28,7 @@ use yii\helpers\Url;
         ])?>
     </div>
     <div class="col-md-2">
-        <?= Html::button('Itens Contrato', [
+        <?= Html::a('Itens Contrato', Url::to(['itens-contrato/index', 'idGrupo' => $idGrupo]), [
             'id' => 'itens-contrato',
             'class' => Layout::BTN_OPCOES_GRUPO
         ])?>
