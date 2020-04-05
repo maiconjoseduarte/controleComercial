@@ -61,7 +61,7 @@ $link = $_GET['r'] ?? null;
                 <?php if (Yii::$app->user->can('app/colaborador/index')) : ?>
                     <li>
                         <a href="<?= Url::to(['/app/colaborador/index']) ?>" class="<?= strstr($link,'app/colaborador') ? 'mm-active' : ''; ?>">
-                            <i class="metismenu-icon pe-7s-mouse">
+                            <i class="metismenu-icon pe-7s-users">
                             </i>Colaboradores
                         </a>
                     </li>
@@ -70,7 +70,7 @@ $link = $_GET['r'] ?? null;
                 <?php if (Yii::$app->user->can('app/grupo/index')) : ?>
                 <li>
                     <a href="<?= Url::to(['/app/grupo/index']) ?>" class="<?= strstr($link,'app/grupo') ? 'mm-active' : ''; ?>">
-                        <i class="metismenu-icon pe-7s-mouse">
+                        <i class="metismenu-icon pe-7s-culture">
                         </i>Grupo
                     </a>
                 </li>

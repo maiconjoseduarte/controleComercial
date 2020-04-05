@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php
                     if ($model == false) {
+                        Yii::$app->session->addFlash('warning', 'Sem informações');
                         return;
                     }
 
