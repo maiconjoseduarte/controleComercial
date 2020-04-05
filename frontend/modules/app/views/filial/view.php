@@ -5,10 +5,9 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Filial */
-/* @var $idGrupo bool */
 
-$this->title = $model->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Filial', 'url' => ['index', 'idGrupo' => $idGrupo]];
+$this->title = ($model) ? "{$model->grupo->id} - {$model->grupo->nome}" : '';
+$this->params['breadcrumbs'][] = ['label' => 'Filial', 'url' => ['index', 'idGrupo' => $model->idGrupo]];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -17,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="mb-3 card">
             <div class="card-body">
                 <?= $this->render('@app/modules/app/views/grupo/botoes-topo', [
-                    'idGrupo' => $idGrupo
+                    'idGrupo' => $model->idGrupo
                 ]); ?>
                 <hr class="mb-5">
 

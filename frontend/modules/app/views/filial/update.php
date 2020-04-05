@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Filial */
 
-$this->title = "{$model->grupo->nome}";
+$this->title = ($model) ? "{$model->grupo->id} - {$model->grupo->nome}" : '';
 $this->params['breadcrumbs'][] = ['label' => 'Filial', 'url' => ['index', 'idGrupo' => $model->idGrupo]];
 $this->params['breadcrumbs'][] = ['label' => $model->nome, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

@@ -37,13 +37,15 @@ class FilialController extends AuthController
      */
     public function actionIndex($idGrupo)
     {
+        $grupo = Grupo::findOne($idGrupo);
+
         $searchModel = new FilialSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $idGrupo);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'idGrupo' => $idGrupo
+            'grupo' => $grupo
         ]);
     }
 
@@ -59,7 +61,6 @@ class FilialController extends AuthController
 
         return $this->render('view', [
             'model' => $model,
-            'idGrupo' => $model->idGrupo,
         ]);
     }
 

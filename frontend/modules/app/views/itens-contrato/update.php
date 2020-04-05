@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\ItensContrato */
 
-$this->title = 'Update Itens Contrato: ' . $model->id;
+$this->title = ($model) ? "{$model->grupo->id} - {$model->grupo->nome}" : '';
 $this->params['breadcrumbs'][] = ['label' => 'Itens Contratos', 'url' => ['index', 'idGrupo' => $model->idGrupo]];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

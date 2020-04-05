@@ -37,13 +37,15 @@ class ItensContratoController extends Controller
      */
     public function actionIndex($idGrupo)
     {
+        $grupo = Grupo::findOne($idGrupo);
+
         $searchModel = new ItensContratoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $idGrupo);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'idGrupo' => $idGrupo
+            'grupo' => $grupo
         ]);
     }
 
@@ -59,7 +61,6 @@ class ItensContratoController extends Controller
 
         return $this->render('view', [
             'model' => $model,
-            'idGrupo' => $model->idGrupo,
         ]);
     }
 

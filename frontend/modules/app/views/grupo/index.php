@@ -38,12 +38,12 @@ $canDelete = Yii::$app->user->can('app/colaborador/delete');
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'panel' => [
-                        'type' => GridView::TYPE_DEFAULT,
-                        'heading' => false
-                    ],
-                    'toolbar' => [
-                        '<div class="pull-right">{export}</div>',
-                    ],
+                    'type' => GridView::TYPE_DEFAULT,
+                    'heading' => false
+                ],
+                'toolbar' => [
+                    '<div class="pull-right">{export}</div>',
+                ],
                 'columns' => [
                     [
                         'class' => '\kartik\grid\ActionColumn',

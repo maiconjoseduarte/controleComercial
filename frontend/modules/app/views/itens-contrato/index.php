@@ -9,9 +9,9 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\app\models\ItensContratoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $idGrupo string */
+/* @var $grupo \common\models\Grupo */
 
-$this->title = 'Itens Contrato';
+$this->title = ($grupo) ? "{$grupo->id} - {$grupo->nome} " : '';
 $this->params['breadcrumbs'][] = $this->title;
 
 $canCreate = Yii::$app->user->can('app/itens-contrato/create');
@@ -19,7 +19,7 @@ $canUpdate = Yii::$app->user->can('app/itens-contrato/update');
 $canDelete = Yii::$app->user->can('app/itens-contrato/delete');
 
 
-$create = ($canCreate) ? Html::a('<i class="' . Icones::ADD . '"></i> ' . Layout::BTN_ADD_LABEL, ['create', 'idGrupo' => $idGrupo], ['class' => Layout::BTN_NOVO, 'style' => 'margin-right: 3px;']) : ''
+$create = ($canCreate) ? Html::a('<i class="' . Icones::ADD . '"></i> ' . Layout::BTN_ADD_LABEL, ['create', 'idGrupo' => $grupo->id], ['class' => Layout::BTN_NOVO, 'style' => 'margin-right: 3px;']) : ''
 
 ?>
 <div class="row">
@@ -27,7 +27,7 @@ $create = ($canCreate) ? Html::a('<i class="' . Icones::ADD . '"></i> ' . Layout
         <div class="mb-3 card">
             <div class="card-body">
                 <?= $this->render('@app/modules/app/views/grupo/botoes-topo', [
-                    'idGrupo' => $idGrupo
+                    'idGrupo' => $grupo->id
                 ]); ?>
                 <hr class="mb-5">
 

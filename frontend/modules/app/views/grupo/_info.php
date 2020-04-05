@@ -6,7 +6,7 @@
 /* @var $disabled bool */
 /* @var $idGrupo string */
 
-$this->title = ($model) ? $model->grupo->nome : '';
+$this->title = ($model) ? "{$model->grupo->id} - {$model->grupo->nome} (Informações Gerais)" : '';
 $this->params['breadcrumbs'][] = ['label' => 'Grupos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
