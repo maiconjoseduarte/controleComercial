@@ -18,8 +18,8 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\Session',
-            'cookieParams' => ['lifetime' => 1800],
-            'timeout' => 1800,
+            'cookieParams' => ['lifetime' => 3600*24],
+            'timeout' => 3600*24,
             'GCProbability' => 1,
         ],
         'cache' => [
